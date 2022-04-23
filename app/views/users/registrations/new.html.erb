@@ -33,7 +33,7 @@
 
           <div class="form-group">
             <%= f.label :prefecture_code %><br>
-            <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name ,class: "form-control"%>
+            <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name %>
           </div>
 
           <div class="form-group">
