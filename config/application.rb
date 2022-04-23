@@ -11,6 +11,7 @@ module AkoShop
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    config.i18n.default_locale = :ja
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -18,5 +19,7 @@ module AkoShop
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    # バリデーションエラーが発生したときに'field_with_errors'というclassを付加しない
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
   end
 end
