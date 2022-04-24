@@ -3,9 +3,22 @@ class ProductsController < ApplicationController
   PER = 15
 
   def index
-    @products = Product.display_list(category_params, params[:page])
+
+    if sort_params.present?
+      @category = Category.request_category(sort_params[:sort_category])
+      @products = Product.sort_products(sort_params, params[:page])
+    elsif params[:category].present?
+      @category = Category.request_category(params[:category])
+      @products = Product.category_products(@category, params[:page])
+    else
+      @products = Product.display_list(params[:page])
+    end
+    #1 sort_paramsが存在する（並び替えをしたとき）
+    #2 sort_paramsは存在しないが、params[:category]が存在する（カテゴリを選択したとき）
+    #3 どちらも存在しない（indexページにアクセスしたとき）
+
     @categories = Category.all
-    @category = Category.find(category_params)
+    @sort_list = Product.sort_list
   end
 
   def show
@@ -54,7 +67,11 @@ class ProductsController < ApplicationController
       params.require(:product).permit(:name, :description, :price, :category_id)
     end
 
-    def category_params
-      params[:category].present? ? params[:category] : "none"
+    # def category_params
+    #   params[:category].present? ? params[:category] : "none"
+    # end
+
+    def sort_params
+      params.permit(:sort, :sort_category)
     end
 end

@@ -6,11 +6,24 @@ class Product < ApplicationRecord
   # カテゴリによる絞り込み
   PER = 15
 
-  scope :display_list, -> (category, page){
-    if category != "none"
-      where(category_id: category).page(page).per(PER)
-    else
-      page(page).per(PER)
-    end
+  scope :display_list, -> (page) { page(page).per(PER) }
+
+  scope :category_products, -> (category, page) { 
+    where(category_id: category).page(page).per(PER)
+  }
+  
+  scope :sort_products, -> (sort_order, page) {
+    where(category_id: sort_order[:sort_category]).order(sort_order[:sort]).
+    page(page).per(PER)
+  }
+
+  scope :sort_list, -> {
+    {
+      "おすすめ順" => "", 
+      "新着順" => "updated_at desc",
+      "価格が安い順" => "price asc",
+      "価格が高い順" => "price desc"
+
+    }
   }
 end
