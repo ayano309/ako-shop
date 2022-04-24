@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "products#index"
 
@@ -22,4 +23,13 @@ Rails.application.routes.draw do
     get "login", :to => "users/sessions#new"
     delete "logout", :to => "users/sessions#destroy"
   end
+
+  resource :users, only: [:show] do
+    collection do
+      get "mypage/show", :to => "users#show"
+      get "mypage", :to => "users#mypage"
+    end
+  end
+
+
 end
