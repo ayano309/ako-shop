@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   resources :products do
     resources :reviews, only: [:create]
+    member do
+      get :favorite
+    end
   end
 
   devise_for :users, :controllers => {
