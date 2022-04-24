@@ -31,6 +31,9 @@
                     <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>        
                     <%= link_to mypage_users_path, class: "nav-link" do %>
                       <i class="fas fa-user mr-1"></i><label>マイページ</label>
+                    <% end %>
+                    <%= link_to mypage_favorite_users_path, class: "nav-link" do %>
+                      <i class="far fa-heart"></i><label>お気に入り</label>
                     <% end %>            
                   </div>
                   
