@@ -25,6 +25,15 @@ class User < ApplicationRecord
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
 
+  def update_password(params, *options)
+    if params[:password].blank?
+      params.delete(:password)
+    end
+
+    result = update(params, *options)
+    clean_up_passwords
+    result
+  end
   
   
 end
