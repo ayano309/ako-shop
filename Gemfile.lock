@@ -177,6 +177,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    socialization (2.0.1)
+      activerecord
     spring (4.0.0)
     sprockets (4.0.3)
       concurrent-ruby (~> 1.0)
@@ -232,6 +234,7 @@ DEPENDENCIES
   rails (~> 6.1.5)
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
+  socialization
   spring
   turbolinks (~> 5)
   tzinfo-data
