@@ -53,6 +53,11 @@
         </div>
       </div>
     </div>
+    <%= form_with url: cart_users_path , method: :delete, class: " mt-3" do |f| %>
+      <%= f.submit "注文画面へ進む", class:"btn btn-primary  mx-auto d-block mb-3" %>
+      <%= link_to "ショッピングを続ける", products_path, class: "link d-flex justify-content-center"%>
+    <% end %>
+      
 
   </div>
 </div>
