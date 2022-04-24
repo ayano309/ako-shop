@@ -1,0 +1,78 @@
+<div class="container d-flex justify-content-center mt-3 content">
+  <div class="w-90">
+    <div class="d-flex justify-content-between">
+      <h2>マイページ</h2>
+      <div class="d-flex align-items-center">
+        <%= link_to logout_path, method: :delete do %>
+          <button type="button" class="btn btn-outline-secondary">ログアウト</button>
+        <% end %>          
+      </div>
+    </div>
+    <hr>
+
+    <div class="container">
+      <div class="d-flex justify-content-between">
+        <div class="row">
+          <div class="col d-flex align-items-center ml-2 mt-3">
+            <div class="d-flex flex-column">
+              <label for="user-name">アカウント設定</label>
+              <p>アカウント情報の編集</p>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <%= link_to mypage_show_users_path do %>
+            <i class="fas fa-chevron-right fa-2x" style="color:gray;"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="container">
+      <div class="d-flex justify-content-between">
+        <div class="row">
+          
+          <div class="col d-flex align-items-center ml-2 mt-3">
+            <div class="d-flex flex-column">
+              <label for="user-name">購入履歴</label>
+              <p>過去の購入履歴を確認できます</p>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <%= link_to mypage_users_path do %>
+            <i class="fas fa-chevron-right fa-2x" style="color:gray;"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    
+    
+    
+    <hr>
+
+    <div class="container">
+      <div class="d-flex justify-content-between">
+        <div class="row">
+          <div class="col-12 d-flex align-items-center ml-2 mt-3">
+            <div class="d-flex flex-column">
+              <label for="user-name">お気に入り</label>
+              <p>お気に入り登録したアイテムを確認できます</p>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <%= link_to logout_path, method: :delete do %>
+            <i class="fas fa-chevron-right fa-2x" style="color:gray;"></i>
+          <% end %>          
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+  </div>
+</div>
