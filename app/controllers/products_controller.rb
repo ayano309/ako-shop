@@ -3,8 +3,9 @@ class ProductsController < ApplicationController
   PER = 15
 
   def index
-    @products = Product.page(params[:page]).per(PER)
-
+    @products = Product.display_list(category_params, params[:page])
+    @categories = Category.all
+    @category = Category.find(category_params)
   end
 
   def show
@@ -51,5 +52,9 @@ class ProductsController < ApplicationController
 
     def product_params
       params.require(:product).permit(:name, :description, :price, :category_id)
+    end
+
+    def category_params
+      params[:category].present? ? params[:category] : "none"
     end
 end
