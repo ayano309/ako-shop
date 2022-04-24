@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   resource :users, only: [:show] do
     collection do
+      get "cart", :to => "shopping_carts#index"
+      post "cart/create", :to => "shopping_carts#create"
       get "mypage/show", :to => "users#show"
       get "mypage", :to => "users#mypage"
       get "mypage/edit_password", :to =>"users#edit_password"

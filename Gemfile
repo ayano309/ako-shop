@@ -58,3 +58,5 @@ gem 'devise'
 gem 'jp_prefecture'
 gem 'socialization'
 gem 'kaminari'
+# ショッピングカートを実装できる
+gem 'acts_as_shopping_cart'
