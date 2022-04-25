@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   # URLは指定のパスにしたい,ファイル構成変えたくないとき、scope
 
   namespace :dashboard do
+    resources :users, only: [:index, :destroy]
     resources :categories, except: [:new]
     resources :products, except: [:show]
   end

@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   acts_as_likeable
 
   # カテゴリによる絞り込み
-  # モジュールの読み込み(product.rb& category.rb)
+  # モジュールの読み込み(product.rb& category.rb,user.rb)
 
   # PER = 15
   # scope :display_list, -> (page) { page(page).per(PER) }
@@ -45,9 +45,10 @@ class Product < ApplicationRecord
     }
   }
 
+  # postgresの時は::textを入れる
   scope :search_for_id_and_name, -> (keyword) {
-    where("name LIKE ?", "%#{keyword}%").
-    or(where("id LIKE ?", "%#{keyword}%"))
+    where("name::text LIKE ?", "%#{keyword}%").
+    or(where("id::text LIKE ?", "%#{keyword}%"))
   }  
 
   

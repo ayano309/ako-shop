@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :products
   has_many :reviews
 
+  # モジュールの読み込み(product.rb& category.rb,user.rb)
+  extend DisplayList
 
   validates :postal_code, presence: true
   validates :prefecture_code, presence: true
@@ -34,6 +36,11 @@ class User < ApplicationRecord
     clean_up_passwords
     result
   end
-  
+
+  # postgresの時は::textを入れる
+  scope :search_information, -> (keyword) { 
+    where("name::text LIKE :keyword OR id::text LIKE :keyword OR email::text LIKE :keyword OR postal_code::text LIKE :keyword OR phone::text LIKE :keyword", keyword: "%#{keyword}%")
+  }
+
   
 end
