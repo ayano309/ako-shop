@@ -12,6 +12,13 @@ Rails.application.routes.draw do
     delete "dashboard/logout", :to => "admins/sessions#destroy"
   end
 
+  # URLは指定のパスにしたい,ファイル構成も指定のパスにしたいとき、namescope
+  # URLは指定のパスにしたい,ファイル構成変えたくないとき、scope
+
+  namespace :dashboard do
+    resources :categories, except: [:new]
+  end
+  
 
   # 商品関連
   root to: "products#index"
