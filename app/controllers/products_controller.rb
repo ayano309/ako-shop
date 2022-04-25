@@ -22,8 +22,9 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @reviews = @product.reviews
+    @reviews = @product.reviews_with_id
     @review = @reviews.new
+
   end
 
   def new

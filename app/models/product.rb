@@ -26,4 +26,8 @@ class Product < ApplicationRecord
 
     }
   }
+
+  def reviews_with_id
+    reviews.reviews_with_id
+  end
 end
