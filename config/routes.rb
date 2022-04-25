@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get "admin", :to => "admin#index"
+
+
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions',
