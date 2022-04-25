@@ -4,17 +4,35 @@ class Product < ApplicationRecord
   acts_as_likeable
 
   # カテゴリによる絞り込み
-  PER = 15
+  # モジュールの読み込み(product.rb& category.rb,user.rb)
 
-  scope :display_list, -> (page) { page(page).per(PER) }
+  # PER = 15
+  # scope :display_list, -> (page) { page(page).per(PER) }
+  extend DisplayList
+
+
+
+
+  # scope :category_products, -> (category, page) {
+  #   where(category_id: category).page(page).per(PER)
+  # }
+
+  # scope :sort_products, -> (sort_order, page) {
+  #   where(category_id: sort_order[:sort_category]).order(sort_order[:sort]).
+  #   page(page).per(PER)
+  # }
+  scope :on_category, -> (category) { where(category_id: category) }
+  scope :sort_order, -> (order) { order(order) }
 
   scope :category_products, -> (category, page) { 
-    where(category_id: category).page(page).per(PER)
+    on_category(category).
+    display_list(page)
   }
   
   scope :sort_products, -> (sort_order, page) {
-    where(category_id: sort_order[:sort_category]).order(sort_order[:sort]).
-    page(page).per(PER)
+    on_category(sort_order[:sort_category]).
+    sort_order(sort_order[:sort]).
+    display_list(page)
   }
 
   scope :sort_list, -> {
@@ -27,6 +45,13 @@ class Product < ApplicationRecord
     }
   }
 
+  # postgresの時は::textを入れる
+  scope :search_for_id_and_name, -> (keyword) {
+    where("name::text LIKE ?", "%#{keyword}%").
+    or(where("id::text LIKE ?", "%#{keyword}%"))
+  }  
+
+  
   def reviews_with_id
     reviews.reviews_with_id
   end

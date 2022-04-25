@@ -8,8 +8,13 @@ class User < ApplicationRecord
   has_many :products
   has_many :reviews
 
+  # モジュールの読み込み ページネーション(product.rb& category.rb,user.rb)
+  extend DisplayList
+  # モジュールの読み込み ユーザーが退会済みかどうかをチェックする(user.rb)
+  extend SwitchFlg
 
-  validates :postal_code, presence: true
+
+  validates :postal_code, presence: true,length: {maximum: 7, minimum: 7}, numericality: true
   validates :prefecture_code, presence: true
   validates :city, presence: true
   validates :street, presence: true
@@ -34,6 +39,11 @@ class User < ApplicationRecord
     clean_up_passwords
     result
   end
-  
+
+  # postgresの時は::textを入れる
+  scope :search_information, -> (keyword) { 
+    where("name::text LIKE :keyword OR id::text LIKE :keyword OR email::text LIKE :keyword OR postal_code::text LIKE :keyword OR phone::text LIKE :keyword", keyword: "%#{keyword}%")
+  }
+
   
 end

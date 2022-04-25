@@ -28,6 +28,13 @@ class UsersController < ApplicationController
     @favorites = @user.likees(Product)
   end
 
+  def destroy
+    # ユーザーが退会処理をするとき
+    @user.deleted_flg = User.switch_flg(@user.deleted_flg)
+    @user.update(deleted_flg: @user.deleted_flg)
+    redirect_to mypage_users_path
+  end
+
   private
 
     def set_user

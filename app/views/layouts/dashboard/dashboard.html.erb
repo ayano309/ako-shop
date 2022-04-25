@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ako shop</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'layouts/dashboard/header' %>
+    <div class="row">
+      <div class="col-3 mt-3">
+          <%= render partial: 'layouts/dashboard/sidebar' %>
+        </div>
+      <div class="col">
+        <main class="py-4 mb-5">
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

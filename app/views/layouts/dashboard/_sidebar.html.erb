@@ -1,0 +1,37 @@
+<div class="side-admin">
+  <div class="container ml-3 ">
+    <h2 class="side-admin-main">受注管理</h2>
+    <div class="d-flex flex-column">
+      <label class="sidebar-category-label">受注一覧</label>
+      <label class="sidebar-category-label">受注登録</label>
+    </div>
+
+    <h2 class="side-admin-main">商品管理</h2>
+    <div class="d-flex flex-column">
+      <label >
+        <%= link_to "商品一覧", dashboard_products_path , class:"sidebar-category-label"%>
+      </label>
+      <label >
+        <%= link_to "商品新規作成", new_dashboard_product_path, class:"sidebar-category-label"%>
+      </label>
+      <label > 
+        <%= link_to "カテゴリ管理", dashboard_categories_path , class: "sidebar-category-label"%>
+      </label>
+      <label class="sidebar-category-label">CSV一括登録</label>
+    </div>
+
+    <h2 class="side-admin-main">顧客管理</h2>
+    <div class="d-flex flex-column">
+      <label >
+        <%= link_to "顧客一覧", dashboard_users_path ,class:"sidebar-category-label"%>
+      </label>
+    </div>
+
+    <h2 class="side-admin-main">その他</h2>
+    <div class="d-flex flex-column">
+      <label class="sidebar-category-label">新着情報管理</label>
+      <label class="sidebar-category-label">管理ユーザー管理</label>
+    </div>
+  </div>
+</div>
+
