@@ -4,9 +4,9 @@ class Product < ApplicationRecord
   acts_as_likeable
 
   # カテゴリによる絞り込み
-  PER = 15
-
-  scope :display_list, -> (page) { page(page).per(PER) }
+  # モジュールの読み込み
+  extend DisplayList
+  
 
   scope :category_products, -> (category, page) { 
     where(category_id: category).page(page).per(PER)
