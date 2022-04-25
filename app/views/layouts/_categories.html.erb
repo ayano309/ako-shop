@@ -6,7 +6,7 @@
         <p>CATEGORY</p><span class="caret"></span>
     <% end %>
     <div class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdown">
-      <% @categories.each do |category| %>
+      <% categories.each do |category| %>
         <%= link_to category.name, products_path(category: category.id) %><br>
       <% end %>                  
     </div>

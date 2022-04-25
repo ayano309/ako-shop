@@ -31,18 +31,22 @@
           </div>
         </div>
         <div class="row">
+        <% if user_signed_in? %>
           <div class="col">
             <%= f.submit "カートに追加", class: "btn btn-primary w-100" do %>
               <i class="fas fa-shopping-cart"></i>
             <% end %>
           </div>
           <div class="col">
-            <% if user_signed_in? %>
-              <%= link_to favorite_product_path, class: "btn favorite-button text-favorite w-100" do %>
-                <i class="fa fa-heart"></i><%= current_user.likes?(@product) ? "お気に入り解除" : "お気に入り" %>
-              <% end %>
+            <%= link_to favorite_product_path, class: "btn favorite-button text-favorite w-100" do %>
+              <i class="fa fa-heart"></i><%= current_user.likes?(@product) ? "お気に入り解除" : "お気に入り" %>
             <% end %>
           </div>
+          <% else %>
+            <%= link_to new_user_session_path do%>
+            <button class="btn btn-primary w-100">カートに追加</button>
+            <% end %>
+          <% end %>
         </div>
       <% end %> 
 
@@ -58,10 +62,28 @@
   <div class="offset-1 col-10">
     <div class="row">
         <% @reviews.each do |review| %>
-        <div class="offset-md-5 col-md-5">
-          <p class="h3"><%= review.content %></p>
-          <label><%= review.created_at %></label>
-        </div>
+          <div class="review-rate">
+            <div id="star-rate-<%= review.id %>"></div>
+            <script>
+            $('#star-rate-<%= review.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+              score: <%= review.rate %>,
+            });
+            </script>
+          </div>
+          <div class="rate">
+            <%= review.rate %>
+          </div>
+          <div class="offset-md-5 col-md-5">
+            <p class="h3"><%= review.content %></p>
+            <h4><%= review.user.name %></h4>
+            <label><%= review.created_at %></label>
+          </div>
         <% end %>
       </div>
 
@@ -69,6 +91,22 @@
         <div class="row">
           <div class="offset-md-5 col-md-5">
             <%= form_with model: @review, url: product_reviews_path(@product) do |f| %>
+              <h4>評価</h4>
+              <div class="form-group row" id="star">
+                <%= f.label :rate,'評価 :', class:"col-md-3 col-form-label" %>
+                <%= f.hidden_field :rate, id: :review_star %>
+              </div>
+              <script>
+                $('#star').raty({
+                  size     : 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  scoreName: 'post[rate]',
+                  half: true,
+                });
+              </script>
+              <h4>レビュー内容</h4>
               <%= f.text_area :content, class: "form-control mb-2" %>
               <%= f.submit "レビューを追加" , class:"btn comment-button text-favorite w-100 mb-5 "%>
             <% end %>
