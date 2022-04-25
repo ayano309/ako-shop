@@ -8,8 +8,11 @@ class User < ApplicationRecord
   has_many :products
   has_many :reviews
 
-  # モジュールの読み込み(product.rb& category.rb,user.rb)
+  # モジュールの読み込み ページネーション(product.rb& category.rb,user.rb)
   extend DisplayList
+  # モジュールの読み込み ユーザーが退会済みかどうかをチェックする(user.rb)
+  extend SwitchFlg
+
 
   validates :postal_code, presence: true
   validates :prefecture_code, presence: true

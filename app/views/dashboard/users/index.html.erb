@@ -30,6 +30,15 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.phone %></td>
+        <td>
+          <%= form_with model: user, url: dashboard_user_path(user), local: true, method: :delete do |f| %>
+            <% if user.deleted_flg %>
+              <%= f.submit "復帰", class: "btn btn-outline-success  btn-sm" %>
+            <% else %>
+              <%= f.submit "削除", class: "btn btn-outline-danger btn-sm" %>
+            <% end %>
+          <% end %>
+        </td>
       </tr>
       <% end %>
     </tbody>
