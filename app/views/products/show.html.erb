@@ -37,8 +37,8 @@
               <i class="fas fa-shopping-cart"></i>
             <% end %>
           </div>
-          <div class="col">
-            <%= link_to favorite_product_path, class: "btn favorite-button text-favorite w-100" do %>
+          <div class="">
+            <%= link_to favorite_product_path, class: "btn btn-outline-secondary text-favorite w-100 ml-3 mt-2" do %>
               <i class="fa fa-heart"></i><%= current_user.likes?(@product) ? "お気に入り解除" : "お気に入り" %>
             <% end %>
           </div>
@@ -89,11 +89,10 @@
 
       <% if user_signed_in? %>
         <div class="row">
-          <div class="offset-md-5 col-md-5">
+          <div class="offset-md-5 col-md-7">
             <%= form_with model: @review, url: product_reviews_path(@product) do |f| %>
-              <h4>評価</h4>
               <div class="form-group row" id="star">
-                <%= f.label :rate,'評価 :', class:"col-md-3 col-form-label" %>
+                <%= f.label :rate,'評価', class:"col-md-3 col-form-label" %>
                 <%= f.hidden_field :rate, id: :review_star %>
               </div>
               <script>
@@ -106,7 +105,6 @@
                   half: true,
                 });
               </script>
-              <h4>レビュー内容</h4>
               <%= f.text_area :content, class: "form-control mb-2" %>
               <%= f.submit "レビューを追加" , class:"btn comment-button text-favorite w-100 mb-5 "%>
             <% end %>
