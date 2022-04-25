@@ -14,7 +14,7 @@ class User < ApplicationRecord
   extend SwitchFlg
 
 
-  validates :postal_code, presence: true
+  validates :postal_code, presence: true,length: {maximum: 7, minimum: 7}, numericality: true
   validates :prefecture_code, presence: true
   validates :city, presence: true
   validates :street, presence: true
