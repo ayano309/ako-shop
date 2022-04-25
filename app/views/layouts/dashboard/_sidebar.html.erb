@@ -10,7 +10,9 @@
     <div class="d-flex flex-column">
       <label class="sidebar-category-label">商品一覧</label>
       <label class="sidebar-category-label">親カテゴリ管理</label>
-      <label class="sidebar-category-label">カテゴリ管理</label>
+      <label > 
+        <%= link_to "カテゴリ管理", dashboard_categories_path , class: "sidebar-category-label"%>
+      </label>
       <label class="sidebar-category-label">CSV一括登録</label>
     </div>
 

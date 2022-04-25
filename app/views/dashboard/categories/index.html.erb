@@ -8,11 +8,11 @@
 
 
     <div class="form-group">
-      <%= f.submit "＋新規作成", class: "btn btn-primary" %>
+      <%= f.submit "新規作成", class: "btn btn-primary" %>
     </div>
   <% end %>
 
-  <table class="table mt-5">
+  <table class="table mt-5 content">
     <thead>
       <tr>
         <th scope="col" class="w-25">ID</th>
@@ -27,10 +27,10 @@
         <th scope="row"><%= category.id %></td>
         <td><%= category.name %></td>
         <td>
-          <%= link_to "編集", edit_dashboard_category_path(category), class: "dashboard-edit-link" %>
+          <%= link_to "編集", edit_dashboard_category_path(category), class: "btn btn-outline-success  btn-sm " %>
         </td>
         <td>
-          <%= link_to "削除", dashboard_category_path(category), method: :delete, class: "dashboard-delete-link" %>
+          <%= link_to "削除", dashboard_category_path(category), method: :delete, class: " btn btn-outline-danger btn-sm " %>
         </td>        
       </tr>
       <% end %>
