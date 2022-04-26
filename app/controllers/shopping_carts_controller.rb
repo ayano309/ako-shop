@@ -15,7 +15,7 @@ before_action :set_cart, only: %i[index create destroy]
     # acts_as_shopping_cartで用意されているaddメソッド
     # to_iは文字列（String）を整数（Integer）に変換するメソッド
     @product = Product.find(product_params[:product_id])
-    @user_cart.add(@product,product_params[:price].to_i,product_params[:quantity].to_i)
+    @user_cart.add(@product, product_params[:price].to_i, product_params[:quantity].to_i)
     redirect_to cart_users_path
   end
 
