@@ -33,18 +33,20 @@
         <div class="row">
         <% if user_signed_in? %>
           <div class="col">
-            <%= f.submit "カートに追加", class: "btn btn-primary w-100" do %>
+            <%= render 'products/modal'%>
+            
+            <%= f.submit "カートに入れる", class: "btn btn-primary w-100 mb-2" do %>
               <i class="fas fa-shopping-cart"></i>
             <% end %>
           </div>
           <div class="">
-            <%= link_to favorite_product_path, class: "btn btn-outline-secondary text-favorite w-100 ml-3 mt-2" do %>
+            <%= link_to favorite_product_path, class: "btn btn-outline-secondary text-favorite w-100 ml-3" do %>
               <i class="fa fa-heart"></i><%= current_user.likes?(@product) ? "お気に入り解除" : "お気に入り" %>
             <% end %>
           </div>
           <% else %>
             <%= link_to new_user_session_path do%>
-            <button class="btn btn-primary w-100">カートに追加</button>
+              <button class="btn btn-primary w-100">カートに追加</button>
             <% end %>
           <% end %>
         </div>
