@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy, :favorite]
   PER = 15
+  RECOMMEND_PRODUCTS_PER_PAGE = 6
 
   def index
 
@@ -24,7 +25,7 @@ class ProductsController < ApplicationController
   def show
     @reviews = @product.reviews_with_id
     @review = @reviews.new
-
+    @recommend_products = Product.recommend_products(RECOMMEND_PRODUCTS_PER_PAGE)
   end
 
   
