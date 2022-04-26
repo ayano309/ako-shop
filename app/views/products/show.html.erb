@@ -2,7 +2,11 @@
 <div class="d-flex justify-content-center content ">
   <div class="row w-75">
     <div class="col mr-2">
-      <%= image_tag "salt.png", class: "img-fuild w-100"%>
+      <% if @product.image.attached? %>
+        <%= image_tag @product.image, class: "img-thumbnail" %>
+      <% else %>
+        <%= image_tag "salt.png", class: "img-thumbnail" %>
+      <% end %>
     </div>
 
     <div class="col">
@@ -64,7 +68,11 @@
     <% @recommend_products.each do |recommend_product| %>
       <div class = "col-2">
         <%= link_to product_path(recommend_product) do%>
-          <%= image_tag "salt.png", class: "img-thumbnail" %>
+          <% if recommend_product.image.attached? %>
+            <%= image_tag recommend_product.image, class: "img-thumbnail" %>
+          <% else %>
+            <%= image_tag "salt.png", class: "img-thumbnail" %>
+          <% end %>
         <% end %>
         <div class="row">
           <div class="col-12">

@@ -18,7 +18,11 @@
       <% @products.each do |product|%>
       <div class="col-6 col-md-4">
         <%= link_to product_path(product) do %>
-          <%= image_tag "salt.png", class: "img-thumbnail"%>
+          <% if product.image.attached? %>
+            <%= image_tag product.image, class: "" ,width:"300",height: "300"%>
+          <% else %>
+            <%= image_tag "salt.png", class: "img-thumbnail" %>
+          <% end %>
         <% end %>
         <div class="row">
           <div class="col-12">
