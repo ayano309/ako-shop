@@ -53,6 +53,8 @@ class Product < ApplicationRecord
 
   #おすすめ商品 flug= trueの商品を取ってくる
   scope :recommend_products, -> (number) { where(recommended_flag: true).take(number) }
+  #送料の有無を判定するフラグを取ってくる
+  scope :check_products_carriage_list, -> (product_ids) { where(id: product_ids).pluck(:carriage_flag)}
 
   def reviews_with_id
     reviews.reviews_with_id
