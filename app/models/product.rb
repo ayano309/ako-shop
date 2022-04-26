@@ -51,7 +51,9 @@ class Product < ApplicationRecord
     or(where("id::text LIKE ?", "%#{keyword}%"))
   }  
 
-  
+  #おすすめ商品 flug= trueの商品を取ってくる
+  scope :recommend_products, -> (number) { where(recommended_flag: true).take(number) }
+
   def reviews_with_id
     reviews.reviews_with_id
   end

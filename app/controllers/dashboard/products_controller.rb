@@ -50,8 +50,8 @@ class Dashboard::ProductsController < ApplicationController
     def set_product
       @product = Product.find(params[:id])
     end
-
+    # おすすめ商品かどうかを判定するフラグ
     def product_params
-      params.require(:product).permit(:name, :description, :price, :category_id)
+      params.require(:product).permit(:name, :description, :price,:recommended_flag, :category_id)
     end
 end
