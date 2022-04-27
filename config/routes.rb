@@ -79,6 +79,9 @@ Rails.application.routes.draw do
       #購入履歴 indexとshow
       get "mypage/purchases", :to => "purchases#index",:as => "mypage_purchases"
       get "mypage/purchases/:num", :to => "purchases#show", :as => "mypage_purchase"
+      #クレジットカード登録
+      get    "mypage/register_card",     :to => "users#register_card"
+      post   "mypage/token",             :to => "users#token"
   end
 end
 

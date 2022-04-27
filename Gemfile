@@ -43,6 +43,7 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'dotenv-rails'
 end
 
 group :test do
@@ -66,3 +67,6 @@ gem 'acts_as_shopping_cart'
 
 #csvインポートなどに使う
 gem 'roo'
+
+# クレジットカード決済機能を導入できる
+gem 'payjp'
