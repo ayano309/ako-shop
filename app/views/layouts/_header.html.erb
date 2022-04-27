@@ -16,7 +16,7 @@
             <li class="nav-item dropdown">
               <%= link_to "#", id: "Dropdown", class: "mx-auto",
               role: "button", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } do %>
-                  <p>CATEGORY</p><span class="caret"></span>
+                  <p class="ml-5 my-auto">CATEGORY</p><span class="caret"></span>
               <% end %>
               <div class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdown">
               <% @categories = Category.all%>
@@ -42,13 +42,13 @@
                       <%= current_user.name %> <span class="caret"></span>様
                   <% end %>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>        
-                    <%= link_to mypage_users_path, class: "nav-link" do %>
-                      <i class="fas fa-user mr-1"></i><label>マイページ</label>
-                    <% end %>
-                    <%= link_to mypage_favorite_users_path, class: "nav-link" do %>
-                      <i class="far fa-heart"></i><label>お気に入り</label>
-                    <% end %> 
+                    <%= link_to  "マイページ", mypage_users_path, class: "dropdown-item"%>
+                    <%= link_to "お気に入り", mypage_favorite_users_path, class: "dropdown-item"%>
+                    <%= link_to "購入履歴", mypage_purchases_users_path, class: "dropdown-item"%>
+                    <%= link_to "アカウント設定", mypage_show_users_path, class: "dropdown-item"%>
+                    <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>   
+                    
+
                   </div>
                 </li>
                 <li class="nav-item mr-5">
