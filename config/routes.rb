@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'purchases/index'
+  get 'purchases/show'
   # 管理者関連
   devise_for :admins, :controllers => {
     :sessions => 'admins/sessions'
@@ -69,6 +71,7 @@ Rails.application.routes.draw do
       put "mypage/password", :to => "users#update_password"
       get  "mypage/favorite", :to => "users#favorite"
       delete "mypage/delete", :to => "users#destroy"
+      get "mypage/purchases", :to => "purchases#index"
     end
   end
 

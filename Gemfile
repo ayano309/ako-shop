@@ -64,4 +64,5 @@ gem 'kaminari'
 # ショッピングカートを実装できる
 gem 'acts_as_shopping_cart'
 
+#csvインポートなどに使う
 gem 'roo'

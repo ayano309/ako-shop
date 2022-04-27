@@ -17,7 +17,12 @@ class ShoppingCart < ApplicationRecord
   #検索した受注番号を持ってくる”＋購入フラグがtrue”
   scope :search_bought_carts_by_ids, -> (ids) { bought_carts.search_carts_by_ids(ids) }
 
+  #購入履歴の一覧  購入フラグがtrueのuser_idが一致したuserを持ってくる
+  scope :search_carts_by_user, -> (user) { where(user_id: user) }
+  scope :search_bought_carts_by_user, -> (user) { bought_carts.search_carts_by_user(user) }  
 
+
+  
   #送料 acts_as_shopping_cartはもともとUSD（米ドル）。CARRIAGEという定数に日本円で金額を代入し、その金額を100倍した値を引数として渡す
   CARRIAGE = 400
   FREE_SHIPPING = 0
