@@ -46,6 +46,25 @@ class Dashboard::ProductsController < ApplicationController
     redirect_to dashboard_products_path
   end
 
+  #表示用、get
+  def import
+  end
+
+  #import、post
+  def import_csv
+    Product.import_csv(params[:file])
+    redirect_to import_csv_dashboard_products_path
+  end
+
+  #雛形ダウンロード用
+  def download_csv
+    send_file(
+      "#{Rails.root}/public/csv/products.csv",
+      filename: "products.csv",
+      type: :csv
+    )
+  end
+
   private
     def set_product
       @product = Product.find(params[:id])

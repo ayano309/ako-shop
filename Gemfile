@@ -57,7 +57,11 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'jp_prefecture'
+#いいね、フォロー
 gem 'socialization'
+#ページネーション
 gem 'kaminari'
 # ショッピングカートを実装できる
 gem 'acts_as_shopping_cart'
+
+gem 'roo'
