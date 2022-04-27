@@ -2,6 +2,7 @@ class Product < ApplicationRecord
   belongs_to :category
   has_many :reviews
   acts_as_likeable
+  has_one_attached :image
 
   # カテゴリによる絞り込み
   # モジュールの読み込み(product.rb& category.rb,user.rb)

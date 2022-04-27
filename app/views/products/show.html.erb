@@ -2,7 +2,11 @@
 <div class="d-flex justify-content-center content ">
   <div class="row w-75">
     <div class="col mr-2">
-      <%= image_tag "salt.png", class: "img-fuild w-100"%>
+      <% if @product.image.attached? %>
+        <%= image_tag @product.image, class: "img-thumbnail" %>
+      <% else %>
+        <%= image_tag "salt.png", class: "img-thumbnail" %>
+      <% end %>
     </div>
 
     <div class="col">
@@ -57,26 +61,31 @@
 </div>
 
 <hr>
-
-<div class="container">
-  <h3 class="title">その他のアイテム</h3>
-  <div class="row">
-    <% @recommend_products.each do |recommend_product| %>
-      <div class = "col-2">
-        <%= link_to product_path(recommend_product) do%>
-          <%= image_tag "salt.png", class: "img-thumbnail" %>
-        <% end %>
-        <div class="row">
-          <div class="col-12">
-            <p class="product-lavel mt-2">
-              <%= recommend_product.name%>
-              <label>￥<%= recommend_product.price %></label>
-            </p>
+<div class="content">
+  <div class="container">
+    <h3 class="title">その他のアイテム</h3>
+    <div class="row">
+      <% @recommend_products.each do |recommend_product| %>
+        <div class = "col-2">
+          <%= link_to product_path(recommend_product) do%>
+            <% if recommend_product.image.attached? %>
+              <%= image_tag recommend_product.image, class: "", width:"160",height: "160" %>
+            <% else %>
+              <%= image_tag "salt.png", class: "img-thumbnail" %>
+            <% end %>
+          <% end %>
+          <div class="row">
+            <div class="col-12">
+              <p class="product-lavel mt-2">
+                <%= recommend_product.name%>
+                <label>￥<%= recommend_product.price %></label>
+              </p>
+            </div>
           </div>
         </div>
+      <% end %> 
       </div>
-    <% end %> 
-    </div>
+  </div>
 </div>
 
 <div class="row w-75">
@@ -91,15 +100,15 @@
           <div class="review-rate">
             <div id="star-rate-<%= review.id %>"></div>
             <script>
-            $('#star-rate-<%= review.id %>').raty({
-              size: 36,
-              starOff:  '<%= asset_path('star-off.png') %>',
-              starOn : '<%= asset_path('star-on.png') %>',
-              starHalf: '<%= asset_path('star-half.png') %>',
-              half: true,
-              readOnly: true,
-              score: <%= review.rate %>,
-            });
+              $('#star-rate-<%= review.id %>').raty({
+                size: 36,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                half: true,
+                readOnly: true,
+                score: <%= review.rate %>,
+              });
             </script>
           </div>
           <div class="rate">
@@ -127,7 +136,7 @@
                   starOff:  '<%= asset_path('star-off.png') %>',
                   starOn : '<%= asset_path('star-on.png') %>',
                   starHalf: '<%= asset_path('star-half.png') %>',
-                  scoreName: 'post[rate]',
+                  scoreName: 'review[rate]',
                   half: true,
                 });
               </script>
