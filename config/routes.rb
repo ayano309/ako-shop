@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :destroy]
     resources :categories, except: [:new]
     resources :products, except: [:show]
+    resources :orders, only: [:index]
   end
   
 

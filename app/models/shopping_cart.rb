@@ -11,6 +11,12 @@ class ShoppingCart < ApplicationRecord
 
   # 購入フラグがtrueのものを
   scope :bought_carts, -> { where(buy_flag: true) }
+  
+  #受注番号検索
+  scope :search_carts_by_ids, -> (ids) { where("id::text LIKE ?", "%#{ids}%") }
+  #検索した受注番号を持ってくる”＋購入フラグがtrue”
+  scope :search_bought_carts_by_ids, -> (ids) { bought_carts.search_carts_by_ids(ids) }
+
 
   #送料 acts_as_shopping_cartはもともとUSD（米ドル）。CARRIAGEという定数に日本円で金額を代入し、その金額を100倍した値を引数として渡す
   CARRIAGE = 400
