@@ -65,15 +65,21 @@ Rails.application.routes.draw do
       get "cart", :to => "shopping_carts#index"
       post "cart/create", :to => "shopping_carts#create"
       delete "cart", :to => "shopping_carts#destroy"
+      #アカウント情報の変更
       get "mypage/show", :to => "users#show"
+      #マイページ
       get "mypage", :to => "users#mypage"
+      #パスワード
       get "mypage/edit_password", :to =>"users#edit_password"
       put "mypage/password", :to => "users#update_password"
+      #お気に入り
       get  "mypage/favorite", :to => "users#favorite"
+      #退会
       delete "mypage/delete", :to => "users#destroy"
-      get "mypage/purchases", :to => "purchases#index"
-    end
+      #購入履歴 indexとshow
+      get "mypage/purchases", :to => "purchases#index",:as => "mypage_purchases"
+      get "mypage/purchases/:num", :to => "purchases#show", :as => "mypage_purchase"
   end
-
+end
 
 end

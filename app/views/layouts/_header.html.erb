@@ -16,7 +16,7 @@
             <li class="nav-item dropdown">
               <%= link_to "#", id: "Dropdown", class: "mx-auto",
               role: "button", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } do %>
-                  <p>CATEGORY</p><span class="caret"></span>
+                  <p class="ml-5 my-auto">CATEGORY</p><span class="caret"></span>
               <% end %>
               <div class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdown">
               <% @categories = Category.all%>

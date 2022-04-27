@@ -9,6 +9,9 @@ class PurchasesController < ApplicationController
   end
 
   def show
+    # カートの中に入っているものを取ってくる
+    @cart = ShoppingCart.find(params[:num])
+    @cart_items = ShoppingCartItem.user_cart_items(@cart.id)
   end
 
 

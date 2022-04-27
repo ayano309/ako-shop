@@ -1,3 +1,5 @@
+<%# 購入履歴一覧 %>
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -22,7 +24,7 @@
               <td><%= order.updated_at.to_datetime.strftime("%Y-%m-%d %H:%M:%S") %></td>
               <td><%= order.total.fractional / 100 %></td>
               <td>
-                <%= link_to "#{ order.id }", mypage_purchases_users_path(order) %>
+                <%= link_to "#{ order.id }", mypage_purchase_users_path(order) %>
               </td>
             </tr>
             <% end %>

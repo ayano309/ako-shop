@@ -28,7 +28,7 @@ class ShoppingCart < ApplicationRecord
   FREE_SHIPPING = 0
 
 
-  # shipping_costメソッドではカート内の商品のcarriage_flagの値を取得し、1つでもtrueの商品が含まれていれば合計金額に送料を加算する
+  # shipping_costメソッドではカート内の商品の送料有無carriage_flagの値を取得し、1つでもtrueの商品が含まれていれば合計金額に送料を加算する
   def shipping_cost
     #カートに入っているアイテムのid
     product_ids = ShoppingCartItem.user_cart_item_ids(self.id)
