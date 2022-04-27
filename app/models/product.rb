@@ -57,7 +57,26 @@ class Product < ApplicationRecord
   #送料の有無を判定するフラグを取ってくる
   scope :check_products_carriage_list, -> (product_ids) { where(id: product_ids).pluck(:carriage_flag)}
 
+  def self.import_csv(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      # IDが見つかれば、レコードを呼び出し、見つかれなければ、新しく作成
+      product = find_by(id: row["id"]) || new
+      # CSVからデータを取得し、設定する
+      product.attributes = row.to_hash.slice(*updatable_attributes)
+      # 保存する
+      product.save!(validate: false)
+    end
+  end
+  
+
+
   def reviews_with_id
     reviews.reviews_with_id
   end
+
+  private
+    def self.updatable_attributes
+      [:name, :description, :price, :recommended_flag, :carriage_flag]
+    end
+    #名前、商品説明、料金、おすすめフラグ、送料有無フラグ
 end

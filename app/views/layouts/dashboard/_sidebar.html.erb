@@ -16,7 +16,9 @@
       <label > 
         <%= link_to "カテゴリ管理", dashboard_categories_path , class: "sidebar-category-label"%>
       </label>
-      <label class="sidebar-category-label">CSV一括登録</label>
+      <label>
+        <%= link_to "CSV一括登録", import_csv_dashboard_products_path, class: "sidebar-category-label"%>
+      </label>
     </div>
 
     <h2 class="side-admin-main">顧客管理</h2>
