@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   
-  get 'purchases/index'
-  get 'purchases/show'
+  
   # 管理者関連
   devise_for :admins, :controllers => {
     :sessions => 'admins/sessions'
@@ -82,7 +81,15 @@ Rails.application.routes.draw do
       #クレジットカード登録
       get    "mypage/register_card",     :to => "users#register_card"
       post   "mypage/token",             :to => "users#token"
+    end
   end
+
+  #お問い合わせ
+
+  resources :contacts, only: [:new, :create]
+  post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
+  post 'contacts/back', to: 'contacts#back', as: 'back'
+  get 'done', to: 'contacts#done', as: 'done'
 end
 
-end
+
