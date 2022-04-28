@@ -162,25 +162,14 @@ small{
 
 #header{
   width:100%;
-  background:#333;
-  color:#fff;
+  color:#333;
   text-align: center;
   padding: 20px;
   line-height: 36px;
 }
 
-section{
-  padding:100px 30px;
-}
 
-section:nth-child(2n){
-  background:#f3f3f3; 
-}
 
-#footer{
-  background:#333;
-  padding:20px;
-}
 
 
 
@@ -198,33 +187,15 @@ section:nth-child(2n){
 .header-menu-li{
   margin: 0 10px;
   a{
-    color:white;
+    color:#333;
     display: flex;
     font-size: 20px;
   }
 }
 
-@media screen and (min-width:760px){
 
-  .openbtn{
-    display: none;
-  }  
-  
-  }
 
-  @media screen and (max-width:760px){
-    #header-menu{
-      display: none;
-    }
-    .account-btn{
-      display: none;
-    }
-    .account{
-      margin-left: 90%;
-    }
-  }
-
-    // ドロップボタン
+// ドロップボタン
 
 .nav-dropbtn{
   font-size: 20px;
