@@ -3,6 +3,7 @@
 @import 'header';
 @import 'likes';
 @import 'admin';
+@import 'nav';
 body {
   margin: 0;
   font-family: Lato,Nunito, sans-serif;
@@ -27,6 +28,10 @@ h3, .h3 {
 
 a{
   text-decoration: none;
+}
+
+ul {
+  list-style-type: none 
 }
 
 .navbar-brand {
