@@ -1,6 +1,6 @@
 <header id="header">
     
-    <div class="d-flex justify-content-between">
+    <div class="account">
       <ul id="header-menu">
         <li class="header-menu-li"><a href="#HOME">HOME</a></li>  
         <li class="header-menu-li"><a href="#NEWS">NEWS</a></li>  
@@ -21,7 +21,7 @@
       <div class="mr-5 d-flex">
         <% if user_signed_in? %>
           <div class="dropdown">
-            <button class="btn btn-primary dropbtn">
+            <button class="btn btn-primary dropbtn account-btn">
               <%= current_user.name %> <span class="caret"></span>様
             </button>
             <div class="dropdown-content">
@@ -32,8 +32,8 @@
               <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>   
             </div>
           </div>
-          <%= link_to cart_users_path, class: "nav-link" do %>
-            <i class="fas fa-shopping-cart fa-2x"></i>
+          <%= link_to cart_users_path, class: "ml-2 cart" do %>
+            <i class="fas fa-shopping-cart fa-2x mt-1"></i>
           <% end %>
         <%else%>
           <div class="dropdown">

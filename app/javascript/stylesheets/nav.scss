@@ -209,14 +209,20 @@ section:nth-child(2n){
   .openbtn{
     display: none;
   }  
+  
   }
 
   @media screen and (max-width:760px){
     #header-menu{
       display: none;
     }
-    
+    .account-btn{
+      display: none;
     }
+    .account{
+      margin-left: 90%;
+    }
+  }
 
     // ドロップボタン
 
@@ -264,4 +270,9 @@ section:nth-child(2n){
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.account{
+  display: flex;
+  justify-content: space-between;
 }
