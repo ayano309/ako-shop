@@ -236,7 +236,7 @@ small{
 }
 
 .dropdown-content a:hover {
-  background-color: white;
+  background-color: #fff;
 }
 
 .dropdown:hover .dropdown-content {
@@ -246,4 +246,9 @@ small{
 .account{
   display: flex;
   justify-content: space-between;
+}
+
+.btn-login{
+  background-color: #333;
+  color:#fff
 }
