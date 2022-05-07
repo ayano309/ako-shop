@@ -9,19 +9,7 @@
 ::before , ::after {
 	box-sizing: inherit;
 }
-button {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	border-radius: 0;
-	background: transparent;
-	color: inherit;
-	vertical-align: middle;
-	text-align: inherit;
-	font: inherit;
-	-webkit-appearance: none;
-	appearance: none;
-}
+
 /*========= ナビゲーションのためのCSS ===============*/
 
 #g-nav{
@@ -31,11 +19,12 @@ button {
     /*ナビのスタート位置と形状*/
   top:0;
     left: -120%;
-  width:100%;
+  width:50%;
     height: 100vh;/*ナビの高さ*/
   background:#999;
     /*動き*/
   transition: all 0.6s;
+  opacity:0.9;
 }
 
 /*アクティブクラスがついたら位置を0に*/
@@ -49,7 +38,7 @@ button {
     /*ナビの数が増えた場合縦スクロール*/
     position: fixed;
     z-index: 999; 
-    width:100%;
+    width:50%;
     height: 100vh;/*表示する高さ*/
     overflow: auto;
     -webkit-overflow-scrolling: touch;
@@ -250,5 +239,7 @@ small{
 
 .btn-login{
   background-color: #333;
-  color:#fff
+  color:#fff;
+  display: inline-block;
+  width: 100px;
 }
