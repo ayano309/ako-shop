@@ -24,7 +24,7 @@
               <td><%= order.updated_at.to_datetime.strftime("%Y-%m-%d %H:%M:%S") %></td>
               <td><%= order.total.fractional / 100 %></td>
               <td>
-                <%= link_to "#{ order.id }", mypage_purchase_users_path(order) %>
+                <%= link_to "詳細", mypage_purchase_users_path(order),class:"btn btn-sm btn-primary" %>
               </td>
             </tr>
             <% end %>

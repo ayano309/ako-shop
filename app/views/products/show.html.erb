@@ -17,10 +17,6 @@
         <p class="d-flex align-items-end item-price">
           ￥<%= @product.price %><span class="ml-2">税込</span>
         </p>
-        <p class="">
-          <%= @product.description %>
-        </p>
-
       </div>
 
       <%# form_withを使って、カートに追加する商品のidなどをshopping_carts_controller.rbのcreateアクションに渡している %>
@@ -36,18 +32,19 @@
         </div>
         <div class="row">
         <% if user_signed_in? %>
-          <div class="col">
-            <%= render 'products/modal'%>
-            
-            <%= f.submit "カートに入れる", class: "btn btn-primary w-100 mb-2" do %>
-              <i class="fas fa-shopping-cart"></i>
+          <%= render 'products/modal'%>
+          <%= f.submit "カートに入れる", class: "btn btn-primary w-100 mb-2" do %>
+            <i class="fas fa-shopping-cart"></i>
+          <% end %>
+          <%= link_to favorite_product_path, class: "btn btn-outline-secondary text-favorite mt-2 mb-5" do %>
+            <% if current_user.likes?(@product)%>
+              <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+              お気に入り解除
+            <% else %>
+              <i class="fas fa-heart" aria-hidden="true"></i>
+              お気に入り追加
             <% end %>
-          </div>
-          <div class="">
-            <%= link_to favorite_product_path, class: "btn btn-outline-secondary text-favorite w-100 ml-3" do %>
-              <i class="fa fa-heart"></i><%= current_user.likes?(@product) ? "お気に入り解除" : "お気に入り" %>
-            <% end %>
-          </div>
+          <% end %>
           <% else %>
             <%= link_to new_user_session_path do%>
               <button class="btn btn-primary w-100">カートに追加</button>
@@ -55,7 +52,8 @@
           <% end %>
         </div>
         <div class="row">
-          <%= link_to new_contact_path, class: 'btn btn-outline-secondary btn-block mt-2' do %>
+          <%= @product.description %>
+          <%= link_to new_contact_path, class: 'btn btn-outline-secondary btn-block mt-5' do %>
             <i class="fas fa-envelope"></i>アイテムについて問い合わせ
           <% end %>
         </div>
@@ -66,12 +64,12 @@
 </div>
 
 <hr>
-<div class="content">
+<div class="">
   <div class="container">
-    <h3 class="title">その他のアイテム</h3>
+    <h3 class="title">おすすめアイテム</h3>
     <div class="row">
       <% @recommend_products.each do |recommend_product| %>
-        <div class = "col-2">
+        <div class = "col-2 product-box">
           <%= link_to product_path(recommend_product) do%>
             <% if recommend_product.image.attached? %>
               <%= image_tag recommend_product.image, class: "", width:"160",height: "160" %>
@@ -93,12 +91,13 @@
   </div>
 </div>
 
-<%= link_to  product_reviews_path(@product)  do %>
-  <button class="btn btn-success btn-lg mx-auto d-block" >評価</button>
-<% end%>
+
 
 <%= link_to  products_path  do %>
   <button class="btn btn-secondary btn-lg mx-auto d-block" >商品一覧に戻る</button>
 <% end%>
 
 
+<%= link_to  product_reviews_path(@product)  do %>
+        <button class="btn btn-success btn-lg mx-auto d-block" >評価</button>
+      <% end%>

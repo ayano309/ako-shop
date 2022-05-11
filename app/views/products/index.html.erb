@@ -39,22 +39,30 @@
   </div>
   <%= paginate @products %>
   <hr>
-  
+
+<div class="content">
   <div class="container">
-    <p>新着商品</p>
+    <h3 class="title">Ranking</h3>
     <div class="row">
-      <div class="col-3">
-        <%= link_to "#", class: "img-thumbnail" do %>
-          <%= image_tag "jam.jpg", class: "img-thumbnail"%>
-        <% end %>
-        <div class="row">
-          <div class="col-12">
-            <p class="product-label mt-2">
-              果肉いっぱいのジャム<br>
-              <label>￥15000</label>
-            </p>
+      <% @rank_products.each do |product| %>
+        <div class = "col-2 product-box">
+          <%= link_to product_path(product) do %>
+            <% if product.image.attached? %>
+              <%= image_tag product.image,size:'120x120' %>
+            <% else %>
+              <%= image_tag "salt.png", class: "img-thumbnail" %>
+            <% end %>
+          <% end %>
+          <div class="row">
+            <div class="col-12">
+              <p class="product-lavel mt-2">
+                <%= product.name %><br>
+                <label>¥ <%= product.price %></label>
+              </p>
+            </div>
           </div>
         </div>
+      <% end %> 
       </div>
-    </div>
   </div>
+</div>

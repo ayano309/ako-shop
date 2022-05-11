@@ -20,6 +20,8 @@ class ProductsController < ApplicationController
 
     @categories = Category.all
     @sort_list = Product.sort_list
+
+    @rank_products = Product.find(ShoppingCartItem.group(:item_id).order('count(item_id) desc').limit(5).pluck(:item_id))
   end
 
   def show
