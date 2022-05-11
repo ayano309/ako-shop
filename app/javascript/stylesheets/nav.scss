@@ -226,19 +226,25 @@ small{
   display: block;
 }
 
-.account{
+
+
+
+// ログイン
+.login{
+  display: flex;
+  margin:0 20px 0 auto;
+}
+.header{
   display: flex;
   justify-content: space-between;
-}
-
-.btn-login{
-  background-color: #333;
-  color:#fff;
-  display: inline-block;
-  width: 100px;
 }
 
 .cart{
   margin-left: 10px;
   line-height: 36px;
+}
+
+.login_btn{
+  background-color: #333;
+  color:#fff;
 }
