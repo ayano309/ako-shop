@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   # 商品関連
   root to: "products#index"
   resources :products do
-    resources :reviews, only: [:create]
+    resources :reviews, only: [:index, :create]
     member do
       get :favorite
     end

@@ -11,8 +11,8 @@
       <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>   
     </div>
   </div>
-  <%= link_to cart_users_path, class: "ml-2 cart" do %>
-    <i class="fas fa-shopping-cart fa-2x mt-1"></i>
+  <%= link_to cart_users_path, class: "cart" do %>
+    <i class="fas fa-shopping-cart fa-2x"></i>
   <% end %>
 <%else%>
   <div class="dropdown">

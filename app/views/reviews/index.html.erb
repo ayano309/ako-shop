@@ -1,0 +1,92 @@
+<div class = "container">
+  <div class = "row">
+  <div class = "col-md-3">
+    <h2 class=index-title>カスタマーレビュー</h2>
+    <%= image_tag @review.product.image, :size => '130x130' %>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>アイテム名</th>
+          <th><%= @product.name%></th>
+        </tr>
+      </tbody>
+    </table>
+
+    
+    <%= form_with model: @review, url: product_reviews_path(@product) do |f| %>
+      <div class="form-group">
+        <div id="star">
+          <%= f.label :rate,'評価', class:"col-md-3 col-form-label" %>
+          <%= f.hidden_field :rate, id: :review_star %>
+        </div>
+        <script>
+          $('#star').raty({
+            size     : 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            scoreName: 'review[rate]',
+            half: true,
+          });
+        </script>
+      </div>
+      <div class="form-group">
+        <%= f.text_area :content, class: "form-control mb-2" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "レビューを追加" , class:"btn btn-success mb-5 "%>
+      </div>
+    <% end %>
+  </div>
+
+
+<div class="col-md-8 offset-md-1">
+    <table class="table">
+        <thead>
+          <tr>
+              <th>評価</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+          </tr>
+        </thead>
+  
+    <% @reviews.each do |review| %>
+      <tbody>
+        <tr>
+          <td>
+            <div class="review-rate">
+              <div id="star-rate-<%= review.id %>"></div>
+              <script>
+                $('#star-rate-<%= review.id %>').raty({
+                  size: 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  half: true,
+                  readOnly: true,
+                  score: <%= review.rate %>,
+                });
+              </script>
+            </div>
+            <div class="rate">
+              <%= review.rate %>
+            </div>
+          </td>
+          <td><%= review.content %></td>
+          <td><%= review.user.name %> <span>様</span></td>
+          <td><label><%= l review.created_at %></label></td>
+          <td></td>
+        </tr>
+      </tbody>
+    <% end %>
+    </table>
+
+    <%= link_to  products_path  do %>
+      <button class="btn btn-secondary btn-lg mx-auto d-block" >商品一覧に戻る</button>
+    <% end%>
+
+  </div>
+  </div>
+</div>

@@ -9,13 +9,20 @@ body {
   margin: 0;
   font-family: Lato,Nunito, sans-serif;
   font-size: .9rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color: #ffe6e1;
+  background-color: #F0F7B6;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.11px;
 }
 
+h2{
+  font-weight: bold;
+}
 .content{
   width: 90%;
   padding: 40px;
@@ -51,15 +58,7 @@ ul {
 
 
 
-body {
-  font-family: Lato;
-  font-size: 14px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: 0.11px;
-}
+
 
 
 .h-10 {
