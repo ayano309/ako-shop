@@ -106,8 +106,22 @@ ul {
     }
   }
 
+
+
   .product-box{
     border:solid 1px #333;
     margin:0 10px;
     border-radius: 4px;
+    position: relative;
   }
+
+.box-step{
+  background-color: #ff9A4b;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  margin: 0;
+  width: 20%;
+  text-align: center;
+}

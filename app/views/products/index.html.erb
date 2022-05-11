@@ -44,8 +44,9 @@
   <div class="container">
     <h3 class="title">Ranking</h3>
     <div class="row">
-      <% @rank_products.each do |product| %>
-        <div class = "col-2 product-box">
+      <% @rank_products.each.with_index(1) do |product, i| %>
+        <div class = "col-4 col-md-2 product-box">
+          <p class="box-step"><%= i %></p>
           <%= link_to product_path(product) do %>
             <% if product.image.attached? %>
               <%= image_tag product.image,size:'120x120' %>
