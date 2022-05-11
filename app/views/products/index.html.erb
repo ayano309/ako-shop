@@ -28,7 +28,7 @@
           <div class="col-12">
             <p class="mt-2">
               <%= product.name %><br>
-              <label>¥<%= product.price %></label>
+              <label>¥<%= product.price.to_s(:delimited) %></label>
             </p>
           </div>
         </div>
@@ -57,7 +57,7 @@
             <div class="col-12">
               <p class="product-lavel mt-2">
                 <%= product.name %><br>
-                <label>¥ <%= product.price %></label>
+                <label>¥ <%= product.price.to_s(:delimited) %></label>
               </p>
             </div>
           </div>

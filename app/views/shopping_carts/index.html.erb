@@ -28,7 +28,7 @@
           <td><%= product.name %></td>
           <th><%= user_cart_item.quantity %></th>
           <th>
-            ￥<%= user_cart_item.price_cents * user_cart_item.quantity %>
+            ￥<%= (user_cart_item.price_cents * user_cart_item.quantity).to_s(:delimited) %>
           </th>
         </tr>
       <% end %>
@@ -42,7 +42,7 @@
           <h2>小計</h2>
         </div>
         <div class="col-6">
-          <h2>￥<%= (@user_cart.total - @user_cart.shipping_cost).fractional / 100 %></h2>
+          <h2>￥<%= ((@user_cart.total - @user_cart.shipping_cost).fractional / 100).to_s(:delimited) %></h2>
         </div>
       </div>      
       <div class="row">
@@ -60,7 +60,7 @@
           <h2>合計</h2>
         </div>
         <div class="col-6">
-          <h2>￥<%= @user_cart.total.fractional / 100 %></h2>
+          <h2>￥<%= (@user_cart.total.fractional / 100 ).to_s(:delimited)%></h2>
           <%# acts_as_shopping_cartで用意されているtotalメソッドを使用し、現在のカート（@user_cart）の合計金額を表示 %>
           <%# @user_cart.total.fractional / 100のように記述して小数点のない日本円表示 %>
         </div>

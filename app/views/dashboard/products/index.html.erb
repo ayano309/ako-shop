@@ -51,7 +51,7 @@
             <% end %>
           </td>
           <td><%= product.name %></td>
-          <td><%= product.price %></td>
+          <td><%= product.price.to_s(:delimited) %></td>
           <td><%= product.category.name %></td>
           <td>
             <%= link_to "編集", edit_dashboard_product_path(product), class: " btn btn-outline-success  btn-sm" %>

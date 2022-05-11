@@ -12,10 +12,10 @@
     <div class="col">
       <div class="d-flex flex-column">
         <h1 class="">
-          <%= @product.name %>
+          <%= @product.name %><%= link_to 'Review' ,product_reviews_path(@product),class: "btn btn-outline-dark btn-sm ml-2"  %>
         </h1>
         <p class="d-flex align-items-end item-price">
-          ￥<%= @product.price %><span class="ml-2">税込</span>
+          ￥<%= @product.price.to_s(:delimited) %><span class="ml-2">税込</span>
         </p>
       </div>
 
@@ -36,7 +36,7 @@
           <%= f.submit "カートに入れる", class: "btn btn-primary w-100 mb-2" do %>
             <i class="fas fa-shopping-cart"></i>
           <% end %>
-          <%= link_to favorite_product_path, class: "btn btn-outline-secondary text-favorite mt-2 mb-5" do %>
+          <%= link_to favorite_product_path, class: "btn btn-outline-dark text-favorite mt-2 mb-5" do %>
             <% if current_user.likes?(@product)%>
               <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
               お気に入り解除
@@ -52,8 +52,8 @@
           <% end %>
         </div>
         <div class="row">
-          <%= @product.description %>
-          <%= link_to new_contact_path, class: 'btn btn-outline-secondary btn-block mt-5' do %>
+          <p><%= @product.description %></p>
+          <%= link_to new_contact_path, class: 'btn btn-outline-dark btn-block mt-3' do %>
             <i class="fas fa-envelope"></i>アイテムについて問い合わせ
           <% end %>
         </div>
@@ -81,7 +81,7 @@
             <div class="col-12">
               <p class="product-lavel mt-2">
                 <%= recommend_product.name%>
-                <label>￥<%= recommend_product.price %></label>
+                <label>￥<%= recommend_product.price.to_s(:delimited) %></label>
               </p>
             </div>
           </div>
@@ -98,6 +98,3 @@
 <% end%>
 
 
-<%= link_to  product_reviews_path(@product)  do %>
-        <button class="btn btn-success btn-lg mx-auto d-block" >評価</button>
-      <% end%>

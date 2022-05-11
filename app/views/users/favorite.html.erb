@@ -19,7 +19,7 @@
             <% end %>
             <div class="container mt-3">
               <h5 class="w-100 favorite-item-text"><%= favorite.name %></h5>
-              <h6 class="w-100 favorite-item-text">￥<%= favorite.price %></h6>
+              <h6 class="w-100 favorite-item-text">￥<%= favorite.price.to_s(:delimited) %></h6>
             </div>
           </div>
         </div>

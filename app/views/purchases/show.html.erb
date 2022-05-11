@@ -33,21 +33,21 @@
             商品の小計
           </div>
           <div class="col-7 mt-2">
-            ￥<%= (@cart.total - @cart.shipping_cost).fractional / 100 %>
+            ￥<%= ((@cart.total - @cart.shipping_cost).fractional / 100 ).to_s(:delimited)%>
           </div>    
           
           <div class="col-5 mt-2">
             送料
           </div>
           <div class="col-7 mt-2">
-            ￥<%= @cart.shipping_cost.fractional / 100 %>
+            ￥<%= (@cart.shipping_cost.fractional / 100).to_s(:delimited) %>
           </div>        
 
           <div class="col-5 mt-2">
             合計金額
           </div>
           <div class="col-7 mt-2">
-            ￥<%= @cart.total.fractional / 100 %>
+            ￥<%= (@cart.total.fractional / 100).to_s(:delimited) %>
           </div>
 
           <div class="col-5 mt-2">
@@ -89,7 +89,7 @@
                     小計
                   </div>
                   <div class="col-10 mt-2">
-                    ￥<%= price = cart_item.price_cents * cart_item.quantity %>
+                    ￥<%= price = (cart_item.price_cents * cart_item.quantity).to_s(:delimited) %>
                   </div>
                 </div>
               </div>

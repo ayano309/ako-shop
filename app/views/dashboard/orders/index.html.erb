@@ -30,7 +30,7 @@
         <%# ショッピングカートモデルのuserのid %>
         <td class="align-middle"><%= User.find(order.user_id).name %></td>
         <td class="align-middle"><%= order.updated_at.to_datetime.strftime("%Y-%m-%d %H:%M:%S") %></td>
-        <td class="align-middle"><%= order.total.fractional / 100 %></td>
+        <td class="align-middle"><%= (order.total.fractional / 100).to_s(:delimited) %></td>
       </tr>
       <% end %>
     </tbody>
