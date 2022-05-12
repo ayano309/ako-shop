@@ -69,7 +69,7 @@
     <h3 class="title">おすすめアイテム</h3>
     <div class="row">
       <% @recommend_products.each do |recommend_product| %>
-        <div class = "col-2 product-box">
+        <div class = "col-4 col-md-2 product-box">
           <%= link_to product_path(recommend_product) do%>
             <% if recommend_product.image.attached? %>
               <%= image_tag recommend_product.image, class: "", width:"160",height: "160" %>
