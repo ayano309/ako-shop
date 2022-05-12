@@ -1,7 +1,7 @@
 function handleImage(image) {
   let reader = new FileReader();
   reader.onload = function() {
-    let imagePreview = 
+    let imagePreview = document.getElementById("product-image-preview");
     imagePreview.src = reader.result;
     imagePreview.className += "img-fluid w-25";
   };
