@@ -1,6 +1,11 @@
 class Product < ApplicationRecord
   belongs_to :category
   has_many :reviews
+
+  #タグ
+  has_many :item_tags, dependent: :destroy
+  has_many :tags, through: :item_tags
+
   acts_as_likeable
   has_one_attached :image
 
@@ -79,6 +84,28 @@ class Product < ApplicationRecord
   def self.search_for(content, method)
     if method == 'patical'
       Product.where('name LIKE ?', '%'+content+'%')
+    end
+  end
+
+  #タグ
+  def save_tags(saveitem_tags)
+    # タグが存在していれば、タグの名前を配列として全て取得
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    # 現在取得したタグから送られてきたタグを除いてoldtagとする
+    old_tags = current_tags - saveitem_tags
+    # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
+    new_tags = saveitem_tags - current_tags
+		
+    # 古いタグを消す
+    old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(name:old_name)
+    end
+		
+    # 新しいタグを保存
+    new_tags.each do |new_name|
+      item_tag = Tag.find_or_create_by(name:new_name)
+      # 配列に保存
+      self.tags << item_tag
     end
   end
 

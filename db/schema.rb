@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_28_134236) do
+ActiveRecord::Schema.define(version: 2022_05_12_091527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,15 @@ ActiveRecord::Schema.define(version: 2022_04_28_134236) do
     t.index ["follower_id", "follower_type"], name: "fk_follows"
   end
 
+  create_table "item_tags", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_item_tags_on_product_id"
+    t.index ["tag_id"], name: "index_item_tags_on_tag_id"
+  end
+
   create_table "likes", force: :cascade do |t|
     t.string "liker_type"
     t.integer "liker_id"
@@ -144,6 +153,12 @@ ActiveRecord::Schema.define(version: 2022_04_28_134236) do
     t.index ["user_id"], name: "index_shopping_carts_on_user_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -167,6 +182,8 @@ ActiveRecord::Schema.define(version: 2022_04_28_134236) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "item_tags", "products"
+  add_foreign_key "item_tags", "tags"
   add_foreign_key "products", "categories"
   add_foreign_key "reviews", "products"
   add_foreign_key "reviews", "users"

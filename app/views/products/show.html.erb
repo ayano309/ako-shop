@@ -53,6 +53,11 @@
         </div>
         <div class="row">
           <p><%= @product.description %></p>
+          <div class="tag">
+            <% @product.tags.each do |tag| %>
+              <%= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") ,class: "tag_name"%>
+            <% end %>
+          </div>
           <%= link_to new_contact_path, class: 'btn btn-outline-dark btn-block mt-3' do %>
             <i class="fas fa-envelope"></i>アイテムについて問い合わせ
           <% end %>

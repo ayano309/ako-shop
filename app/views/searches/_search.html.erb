@@ -2,6 +2,7 @@
   <div class="form-inline product_form" id="search-wrap">
     <div class="form-group">
       <%= f.text_field :content , id: "search-text"%>
+      <%= f.hidden_field :model, :value => "product" %>
       <%= f.hidden_field :method, :value => "patical" %>
     </div>
     <div class="input-group">

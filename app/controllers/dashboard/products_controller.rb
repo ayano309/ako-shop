@@ -28,8 +28,14 @@ class Dashboard::ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.save
-    redirect_to dashboard_products_path
+    tag_list = params[:product][:tag_name].split(',')
+    
+    if @product.save
+      @product.save_tags(tag_list)
+      redirect_to dashboard_products_path
+    else
+      render :new
+    end
   end
 
   def edit

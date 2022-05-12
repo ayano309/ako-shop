@@ -8,7 +8,7 @@
       <%= f.select :sort, @sort_list, {}, { onChange: "javascript: this.form.submit();", class: "form-inline ml-5 form-control" } %>
     <% end %>
   <% end %>
-  <div class="w-75 mt-2">
+  <div class="mt-2">
     <div class="w-75">
       <%= form_with url: dashboard_products_path, method: :get, local: true do |f| %>
         <div class="d-flex flex-inline form-group">
@@ -35,6 +35,7 @@
           <th scope="col">商品名</th>
           <th scope="col">価格</th>
           <th scope="col">カテゴリ名</th>
+          <th scope="col">タグ</th>
           <th scope="col"></th>
           <th scope="col"></th>
         </tr>
@@ -45,14 +46,21 @@
           <th scope="row"><%= product.id %></td>
           <td>
             <% if product.image.attached? %>
-              <%= image_tag product.image, class: "h-10 img-fluid" %>
+              <%= image_tag product.image, :size => '100x100' %>
             <% else %>
-              <%= image_tag "salt.png", class: "h-10 img-fluid" %>
+              <%= image_tag "salt.png", :size => '100x100' %>
             <% end %>
           </td>
           <td><%= product.name %></td>
           <td><%= product.price.to_s(:delimited) %></td>
           <td><%= product.category.name %></td>
+          <td>
+            <% product.tags.each do |tag| %>
+              <li style="list-style: none;">
+                <%= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %> 
+              </li>
+            <% end %>
+          </td>
           <td>
             <%= link_to "編集", edit_dashboard_product_path(product), class: " btn btn-outline-success  btn-sm" %>
           </td>
