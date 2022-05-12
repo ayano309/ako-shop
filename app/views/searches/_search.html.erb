@@ -1,5 +1,11 @@
 <%= form_with url: search_path, method: :get, local: true do |f| %>
-  <%= f.text_field :content %>
-  <%= f.hidden_field :method, :value => "patical" %>
-  <%= f.submit '検索' %>
+  <div class="form-inline product_form">
+    <div class="form-group">
+      <%= f.text_field :content %>
+      <%= f.hidden_field :method, :value => "patical" %>
+    </div>
+    <div class="input-group">
+      <button type="submit" class="btn header-search-button"><i class="fas fa-search header-search-icon"></i></button>
+    </div>
+  </div>
 <% end %>
