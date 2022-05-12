@@ -28,6 +28,7 @@ h2{
   padding: 40px;
   background-color: #fff;
   margin: 0 auto;
+  border-radius: 10px;
 }
 
 
@@ -116,7 +117,7 @@ ul {
   }
 
 .box-step{
-  background-color: #ff9A4b;
+  background-color: rgb(85,85,85);
   position: absolute;
   top: 0;
   left: 0;
@@ -124,4 +125,14 @@ ul {
   margin: 0;
   width: 20%;
   text-align: center;
+}
+
+.gold {
+  background: linear-gradient(45deg, #B67B03 0%, #DAAF08 45%, #FEE9A0 70%, #DAAF08 85%, #B67B03 90% 100%);
+}
+.silver {
+background: linear-gradient(45deg, #757575 0%, #9E9E9E 45%, #E8E8E8 70%, #9E9E9E 85%, #757575 90% 100%);}
+
+.copper{
+  background: -webkit-gradient(linear, left top, right bottom, from(#97461a), color-stop(0.3, #fbd8c5), color-stop(0.8, #6c2e16), to(#efdbcd));
 }

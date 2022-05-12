@@ -46,7 +46,7 @@
     <div class="row">
       <% @rank_products.each.with_index(1) do |product, i| %>
         <div class = "col-4 col-md-2 product-box">
-          <p class="box-step"><%= i %></p>
+          <p class="box-step <%= way_color(i) %>"><%= i %></p>
           <%= link_to product_path(product) do %>
             <% if product.image.attached? %>
               <%= image_tag product.image,size:'120x120' %>
@@ -64,6 +64,7 @@
           </div>
         </div>
       <% end %> 
+      
       </div>
   </div>
 </div>
