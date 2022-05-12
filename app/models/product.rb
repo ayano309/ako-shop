@@ -69,10 +69,19 @@ class Product < ApplicationRecord
   end
   
 
-
+  #レビュー(idがあるのだけとってくる)
   def reviews_with_id
     reviews.reviews_with_id
   end
+
+
+#検索
+  def self.search_for(content, method)
+    if method == 'patical'
+      Product.where('name LIKE ?', '%'+content+'%')
+    end
+  end
+
 
   private
     def self.updatable_attributes

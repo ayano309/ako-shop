@@ -39,6 +39,9 @@ Rails.application.routes.draw do
     end
   end
 
+  #検索
+  get '/search', to: 'searches#search'
+
   
   # user関連
   devise_for :users, :controllers => {
