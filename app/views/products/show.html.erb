@@ -12,7 +12,7 @@
     <div class="col">
       <div class="d-flex flex-column">
         <h1 class="">
-          <%= @product.name %><%= link_to 'Review' ,product_reviews_path(@product),class: "btn btn-outline-dark btn-sm ml-2"  %>
+          <%= @product.name %><%= link_to 'Review' ,product_reviews_path(@product),class: "btn btn-warning btn-sm ml-2"  %>
         </h1>
         <p class="d-flex align-items-end item-price">
           ￥<%= @product.price.to_s(:delimited) %><span class="ml-2">税込</span>
