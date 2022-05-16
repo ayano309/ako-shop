@@ -66,6 +66,9 @@ Rails.application.routes.draw do
     collection do
       get "cart", :to => "shopping_carts#index"
       post "cart/create", :to => "shopping_carts#create"
+      #カートを空にする
+      delete "deletecart", :to => "shopping_carts#all_destroy"
+      #購入する
       delete "cart", :to => "shopping_carts#destroy"
       #アカウント情報の変更
       get "mypage/show", :to => "users#show"

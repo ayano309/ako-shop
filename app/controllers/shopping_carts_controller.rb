@@ -22,6 +22,12 @@ before_action :set_cart, only: %i[index create destroy]
   def update
 
   end
+  #カートの中身を空にする
+  def all_destroy
+    ShoppingCart.last.clear
+    redirect_to root_path
+  end
+
 
   def destroy
     @user_cart.buy_flag = true
