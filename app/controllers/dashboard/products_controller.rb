@@ -71,12 +71,18 @@ class Dashboard::ProductsController < ApplicationController
     )
   end
 
+  def favorite_users
+    @products = Product.all
+    
+  end
+
+
   private
     def set_product
       @product = Product.find(params[:id])
     end
     # おすすめ商品かどうかを判定するフラグ
     def product_params
-      params.require(:product).permit(:name, :description, :price, :recommended_flag, :carriage_flag, :category_id, :image)
+      params.require(:product).permit(:name, :description, :price, :recommended_flag, :carriage_flag, :soldout_flag, :category_id, :image)
     end
 end

@@ -112,7 +112,7 @@ class Product < ApplicationRecord
 
   private
     def self.updatable_attributes
-      [:name, :description, :price, :recommended_flag, :carriage_flag]
+      [:name, :description, :price, :recommended_flag, :carriage_flag, :soldout_flag]
     end
     #名前、商品説明、料金、おすすめフラグ、送料有無フラグ
 end

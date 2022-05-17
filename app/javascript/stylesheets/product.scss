@@ -1,0 +1,26 @@
+.product_image{
+  position: relative;
+}
+
+
+
+.active {
+  
+  .triangle {
+    position: absolute;
+    top:0;
+    border-bottom: 60px solid transparent;
+    border-left: 60px solid red;
+  }
+
+  .label {
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    font-size: 14px;
+    color: #fff;
+    transform: rotate(-45deg);
+
+  }
+
+}

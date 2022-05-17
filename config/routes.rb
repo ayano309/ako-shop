@@ -24,6 +24,7 @@ Rails.application.routes.draw do
         get  "import/csv", :to => "products#import"
         post "import/csv", :to => "products#import_csv"
         get  "import/csv_download", :to => "products#download_csv"
+        get  "/favorite", :to => "products#favorite_users"
       end
     end
     resources :orders, only: [:index]
