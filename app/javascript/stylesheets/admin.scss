@@ -1,19 +1,23 @@
-.side-admin{
+.side-admin-main{
   background-color: #191919;
   color: #fff;
+  margin-bottom: 10px;
   
 }
 
 .sidebar-category-label{
-  color: #fff;
-  margin-left: 30px;
+  text-align: center;
 
+  &_link{
+    color: #333;
+    &:hover{
+      color:rgb(20, 191, 20);	
+      text-decoration: none;
+    }
+  }
   
 }
-.sidebar-category-label:hover{
-  color:#666;	
-  text-decoration: none;
-}
+
 
 .csv-button{
   border-radius: 2px;
