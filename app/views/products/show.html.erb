@@ -1,7 +1,7 @@
 
 <div class="d-flex justify-content-center content ">
   <div class="row w-75">
-    <div class="col mr-2">
+    <div class="col-md-4 mr-2">
       <% if @product.image.attached? %>
         <%= image_tag @product.image,class: "img-thumbnail product_image" %>
         <div class= "<%= add_active_class %>">
@@ -15,11 +15,27 @@
       <% end %>
     </div>
 
-    <div class="col">
+    <div class="col-md-4">
       <div class="d-flex flex-column">
-        <h1 class="">
-          <%= @product.name %><%= link_to 'Review' ,product_reviews_path(@product),class: "btn btn-warning btn-sm ml-2"  %>
-        </h1>
+        <div class="review_avg">
+          <h1><%= @product.name %></h1>
+          <%= link_to product_reviews_path(@product),class: "btn btn-outline-warning text-dark btn-sm ml-2"  do %>
+            <div id="star-rate-<%= @product.id %>">Review <%=@product.reviews.count%>件 &nbsp;<br></div>
+          
+            <script>
+              $('#star-rate-<%= @product.id %>').raty({
+                size: 36,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                half: true,
+                readOnly: true,
+                score: <%=@product.reviews.average(:rate).to_f.round(1) %>,
+              });
+              
+            </script>
+          <% end %>
+        </div>
         <p class="d-flex align-items-end item-price">
           ￥<%= @product.price.to_s(:delimited) %><span class="ml-2">税込</span>
         </p>
