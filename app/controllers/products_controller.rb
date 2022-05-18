@@ -41,7 +41,8 @@ class ProductsController < ApplicationController
 
   def favorite
     current_user.toggle_like!(@product)
-    redirect_to product_url @product
+    # redirect_to product_url @product
+    
   end
 
   private
@@ -51,7 +52,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:name, :description, :price, :category_id, :likers_count)
+      params.require(:product).permit(:name, :description, :price, :category_id)
     end
 
     # def category_params

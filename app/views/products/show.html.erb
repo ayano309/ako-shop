@@ -64,16 +64,13 @@
               <i class="fas fa-shopping-cart"></i>
             <% end %>
           <% end %>
-          <%= link_to favorite_product_path, class: "btn btn-outline-dark text-favorite mt-2 mb-5" do %>
-            <% if current_user.likes?(@product)%>
-              <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-              お気に入り解除
-            <% else %>
-              <i class="fas fa-heart" aria-hidden="true"></i>
-              お気に入り追加
-            <% end %>
+          <%= link_to favorite_product_path, class: "btn btn-outline-dark text-favorite mt-2 mb-5",remote: true do %>
+            <div id="favorite-product">
+              <%= render "products/favorite", product: @product %>
+            </div>
+            
           <% end %>
-          <div class="likes_count"><%= @product.likers_count %></div>
+          
           <% else %>
             <%= link_to new_user_session_path do%>
               <button class="btn btn-primary w-100">カートに追加</button>
