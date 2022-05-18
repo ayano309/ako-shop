@@ -73,6 +73,7 @@
               お気に入り追加
             <% end %>
           <% end %>
+          <div class="likes_count"><%= @product.likers_count %></div>
           <% else %>
             <%= link_to new_user_session_path do%>
               <button class="btn btn-primary w-100">カートに追加</button>
