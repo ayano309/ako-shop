@@ -1,5 +1,5 @@
 class ShoppingCartsController < ApplicationController
-before_action :set_cart, only: %i[index create destroy]
+before_action :set_cart, only: %i[index create destroy all_destroy]
 
   def index
     # カートに入っているすべての商品データ
@@ -22,10 +22,22 @@ before_action :set_cart, only: %i[index create destroy]
   def update
 
   end
+
+  
+
+
+
   #カートの中身を空にする
   def all_destroy
-    ShoppingCart.last.clear
-    redirect_to root_path
+    user_cart_items = ShoppingCartItem.user_cart_items(@user_cart)
+    if user_cart_items.destroy_all
+      flash[:notice] = "カート商品を全て削除しました"
+      redirect_to cart_users_path
+    else
+      @user_cart_items = ShoppingCartItem.user_cart_items(@user_cart)
+      render :index
+    end
+
   end
 
 
