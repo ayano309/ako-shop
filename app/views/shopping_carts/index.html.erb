@@ -33,6 +33,7 @@
           <th>
             ￥<%= (user_cart_item.price_cents * user_cart_item.quantity).to_s(:delimited) %>
           </th>
+          <th><%= link_to "削除", cart_delete_users_path(user_cart_item.id), method: :delete, class: "btn btn-outline-danger btn-sm" %></th>
         </tr>
       <% end %>
     </tbody>

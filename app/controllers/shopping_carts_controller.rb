@@ -24,7 +24,11 @@ before_action :set_cart, only: %i[index create destroy all_destroy]
   end
 
   
-
+  def delete_item
+    item = ShoppingCartItem.find(params[:id])
+    item.destroy
+    redirect_to cart_users_path
+  end
 
 
   #カートの中身を空にする

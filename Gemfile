@@ -70,3 +70,7 @@ gem 'roo'
 
 # クレジットカード決済機能を導入できる
 gem 'payjp'
+
+gem 'better_errors'
+gem 'binding_of_caller'
+gem 'pry-rails'
