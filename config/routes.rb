@@ -67,6 +67,8 @@ Rails.application.routes.draw do
     collection do
       get "cart", :to => "shopping_carts#index"
       post "cart/create", :to => "shopping_carts#create"
+      #商品１個ずつ削除
+      delete "cart/:id", :to => "shopping_carts#delete_item", as: 'cart_delete'
       #カートを空にする
       delete "deletecart", :to => "shopping_carts#all_destroy"
       #購入する
