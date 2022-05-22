@@ -1,0 +1,44 @@
+.w-60.content
+  %h1 商品登録
+  %hr/
+  = form_with model: @product, url: dashboard_products_path, local: true do |f|
+    .form-inline.mt-4.mb-4.row
+      = f.label "商品名", class: "col-2 d-flex justify-content-start"
+      = f.text_field :name, class: "form-control col-8"
+    .form-inline.mt-4.mb-4.row
+      = f.label "商品説明", class: "col-2 d-flex justify-content-start"
+      = f.text_area :description, class: "form-control col-8"
+    .form-inline.mt-4.mb-4.row
+      = f.label "価格", class: "col-2 d-flex justify-content-start"
+      = f.number_field :price, class: "form-control col-8"
+    .form-inline.mt-4.mb-4.row
+      = f.label "カテゴリ", class: "col-2 d-flex justify-content-start"
+      = f.collection_select(:category_id, @categories, :id, :name)
+    .form-inline.mt-4.mb-4.row
+      = f.label "画像", class: "col-2 d-flex justify-content-start"
+      - if @product.image.attached?
+        = image_tag @product.image, id: "product-image-preview", class: "img-fluid w-25"
+      - else
+        %img#product-image-preview{:src => "#"}/
+      .d-flex.flex-column.ml-2
+        %small.mb-3
+          600px×600px推奨。
+          %br>/
+          画像をアップロードする。
+        = f.label "画像を選択", for: "product_image", class: "btn btn-outline-dark btn-sm"
+        = f.file_field :image, { onChange: "javascript: handleImage(this.files);", style: "display: none;"}
+    .form-inline.mt-4.mb-4.row
+      = f.label "Tag", class: "col-2 d-flex justify-content-start"
+      = f.text_field :tag_name, class: 'form-control col-8' ,placeholder: "複数登録は ,で区切ってください"
+    .form-inline.mt-4.mb-4.row
+      = f.label "オススメする", class: "col-2 d-flex justify-content-start"
+      = f.check_box :recommended_flag, class: "check-box"
+    .form-inline.mt-4.mb-4.row
+      = f.label "送料", class: "col-2 d-flex justify-content-start"
+      = f.check_box :carriage_flag, class: "check-box"
+    .form-inline.mt-4.mb-4.row
+      = f.label "売り切れ？", class: "col-2 d-flex justify-content-start"
+      = f.check_box :soldout_flag, class: "check-box"
+    = f.submit "商品を登録", class:"btn btn-primary d-block mx-auto"
+  .mt-4= link_to "商品一覧に戻る", dashboard_products_path ,class: "d-flex justify-content-center"
+= javascript_pack_tag 'new'

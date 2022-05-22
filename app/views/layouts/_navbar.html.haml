@@ -1,0 +1,53 @@
+%body
+  %header#header
+    .header
+      %ul#header-menu
+        %li.header-menu-li= link_to "HOME",products_path ,class:"link-btn"
+        %li.header-menu-li= link_to "NEWS",products_path ,class:"link-btn"
+        %li.header-menu-li= link_to "ABOUT",products_path ,class:"link-btn"
+        %li.header-menu-li.dropdown
+          .dropbtn.nav-dropbtn CATEGORY
+          .dropdown-content
+            - @categories = Category.all
+            - @categories.each do |category|
+              = link_to category.name, products_path(category: category.id)
+              %br/
+        %li
+          = render 'searches/search'
+      .login
+        = render 'layouts/login'
+  .openbtn
+    %span
+    %span
+    %span
+  %nav#g-nav
+    #g-nav-list
+      %ul
+        = link_to products_path ,class:"link-btn" do
+          %h1.g-nav-title HOME
+        = link_to products_path ,class:"link-btn" do
+          %h1.g-nav-title NEWS
+        = link_to products_path ,class:"link-btn" do
+          %h1.g-nav-title ABOUT
+        %li.header-menu-li.dropdown
+          .dropbtn.nav-dropbtn
+            CATEGORY
+          .dropdown-content
+            - @categories = Category.all
+            - @categories.each do |category|
+              = link_to category.name, products_path(category: category.id)
+              %br/
+  :javascript
+    $(".openbtn").click(function () {//ボタンがクリックされたら
+
+      $(this).toggleClass('active');//ボタン自身に activeクラスを付与し
+      $("#g-nav").toggleClass('panelactive');//ナビゲーションにpanelactiveクラスを付与
+
+    });
+
+    $("#g-nav a").click(function () {//ナビゲーションのリンクがクリックされたら
+
+      $(".openbtn").removeClass('active');//ボタンの activeクラスを除去し
+      $("#g-nav").removeClass('panelactive');//ナビゲーションのpanelactiveクラスも除去
+      
+    });

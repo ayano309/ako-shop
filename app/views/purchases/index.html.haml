@@ -1,0 +1,23 @@
+.container
+  .row.justify-content-center
+    .col-md-8
+      %span
+        = link_to "マイページ", mypage_users_path
+        \&gt; 購入履歴
+      .container.mt-4.content
+        %table.table
+          %thead
+            %tr
+              %th{:scope => "col"} 注文番号
+              %th{:scope => "col"} 購入日時
+              %th{:scope => "col"} 合計金額
+              %th{:scope => "col"} 詳細
+          %tbody
+            - @orders.each do |order|
+              %tr
+                %td= order.id
+                %td= order.updated_at.to_datetime.strftime("%Y-%m-%d %H:%M:%S")
+                %td= (order.total.fractional / 100).to_s(:delimited)
+                %td
+                  = link_to "詳細", mypage_purchase_users_path(order),class:"btn btn-sm btn-primary"
+      = paginate @orders

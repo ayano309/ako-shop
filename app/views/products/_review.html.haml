@@ -1,0 +1,43 @@
+.row.w-75
+  .offset-1.col-11
+    %hr.w-100/
+    %h3.float-left カスタマーレビュー
+  .offset-1.col-10
+    .row
+      - @reviews.each do |review|
+        .review-rate
+          %div{:id => "star-rate-#{review.id}"}
+          :javascript
+            $('#star-rate-#{review.id}').raty({
+              size: 36,
+              starOff:  '#{asset_path('star-off.png')}',
+              starOn : '#{asset_path('star-on.png')}',
+              starHalf: '#{asset_path('star-half.png')}',
+              half: true,
+              readOnly: true,
+              score: #{review.rate},
+            });
+        .rate
+          = review.rate
+        .offset-md-5.col-md-5
+          %p= review.content
+          %p= review.user.name
+          %label= l review.created_at
+    - if user_signed_in?
+      .row.mt-3
+        .offset-md-5.col-md-7
+          = form_with model: @review, url: product_reviews_path(@product) do |f|
+            #star.form-group.row
+              = f.label :rate,'評価', class:"col-md-3 col-form-label"
+              = f.hidden_field :rate, id: :review_star
+            :javascript
+              $('#star').raty({
+                size     : 36,
+                starOff:  '#{asset_path('star-off.png')}',
+                starOn : '#{asset_path('star-on.png')}',
+                starHalf: '#{asset_path('star-half.png')}',
+                scoreName: 'review[rate]',
+                half: true,
+              });
+            = f.text_area :content, class: "form-control mb-2"
+            = f.submit "レビューを追加" , class:"btn comment-button text-favorite w-100 mb-5 "

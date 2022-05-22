@@ -1,0 +1,53 @@
+.content
+  %h1 商品管理
+  = form_with url: dashboard_products_path, method: :get, local: true, class: "form-inline" do |f|
+    並び替え
+    - if @sorted.present?
+      = f.select :sort, @sort_list, { selected: @sorted }, { onChange: "javascript: this.form.submit();", class: "form-inline ml-5 form-control" }
+    - else
+      = f.select :sort, @sort_list, {}, { onChange: "javascript: this.form.submit();", class: "form-inline ml-5 form-control" }
+  .mt-2
+    .w-75
+      = form_with url: dashboard_products_path, method: :get, local: true do |f|
+        .d-flex.flex-inline.form-group
+          .d-flex.align-items-center
+            商品ID・商品名
+          = f.text_area :keyword, class: "form-control ml-2 w-50"
+        = f.submit "検索", class: "btn btn btn-secondary d-block mx-auto"
+    .d-flex.justify-content-between.w-75.mt-4
+      %h3
+        合計#{@total_count}件
+      = link_to "新規作成", new_dashboard_product_path, class: "btn btn-primary"
+    %table.table.table-responsive.mt-5
+      %thead
+        %tr
+          %th{:scope => "col"} ID
+          %th{:scope => "col"} 画像
+          %th{:scope => "col"} 商品名
+          %th{:scope => "col"} 価格
+          %th{:scope => "col"} カテゴリ名
+          %th{:scope => "col"} タグ
+          %th{:scope => "col"}
+          %th{:scope => "col"}
+      %tbody
+        - @products.each do |product|
+          %tr
+            %th{:scope => "row"}
+              = product.id
+            %td
+              - if product.image.attached?
+                = image_tag product.image, :size => '100x100'
+              - else
+                = image_tag "salt.png", :size => '100x100'
+            %td= product.name
+            %td= product.price.to_s(:delimited)
+            %td= product.category.name
+            %td
+              - product.tags.each do |tag|
+                %li{:style => "list-style: none;"}
+                  = link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect")
+            %td
+              = link_to "編集", edit_dashboard_product_path(product), class: " btn btn-outline-success  btn-sm"
+            %td
+              = link_to "削除", dashboard_product_path(product), method: :delete, class: "btn btn-outline-danger btn-sm"
+  = paginate @products

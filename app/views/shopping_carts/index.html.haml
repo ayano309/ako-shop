@@ -1,0 +1,51 @@
+.col-md-8.offset-md-1.content
+  %h2 カートに入っているアイテム
+  - if @user_cart_items.exists?
+    = link_to "カートを空にする", deletecart_users_path , method: :delete, class: "btn btn-outline-danger btn-sm"
+  %table.table.table-hover.table-inverse
+    %thead
+      %tr
+        %th
+        %th アイテム名
+        %th 個数
+        %th 小計
+        %th
+        %th{:colspan => "2"}
+    %tbody
+      - @user_cart_items.each do |user_cart_item|
+        - product = Product.find(user_cart_item.item_id)
+        %tr
+          %td
+            = link_to product_path(product) do
+              - if product.image.attached?
+                = image_tag product.image, :size => '130x130'
+              - else
+                = image_tag "salt.png", :size => '130x130'
+          %td= product.name
+          %th= user_cart_item.quantity
+          %th
+            ￥#{(user_cart_item.price_cents * user_cart_item.quantity).to_s(:delimited)}
+          %th= link_to "削除", cart_delete_users_path(user_cart_item.id), method: :delete, class: "btn btn-outline-danger btn-sm"
+  %hr/
+  .offset-8.col-4
+    .row
+      .col-6
+        %h2 小計
+      .col-6
+        %h2
+          ￥#{((@user_cart.total - @user_cart.shipping_cost).fractional / 100).to_s(:delimited)}
+    .row
+      .col-6
+        %h2 送料
+      .col-6
+        %h2
+          ￥#{@user_cart.shipping_cost.fractional / 100}
+    .row
+      .col-6
+        %h2 合計
+      .col-6
+        %h2
+          ￥#{(@user_cart.total.fractional / 100 ).to_s(:delimited)}
+      .col-12.d-flex.justify-content-end
+        表示価格は税込みです
+  = render 'purchase_btn'

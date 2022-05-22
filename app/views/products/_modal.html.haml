@@ -1,0 +1,14 @@
+.btn.btn-link.d-flex{"data-target" => "#buy-confirm-modal", "data-toggle" => "modal"}
+  %p
+    %i.fas.fa-exclamation-circle
+    送料について
+#buy-confirm-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "staticBackdropLabel", "data-backdrop" => "static", "data-keyboard" => "false", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5#staticBackdropLabel.modal-title
+          %span.mr-5{:style => "color:gray;"}> 全国一律
+          ¥400
+        %button.close{"aria-label" => "閉じる", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-footer

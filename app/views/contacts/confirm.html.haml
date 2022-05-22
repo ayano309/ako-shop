@@ -1,0 +1,21 @@
+.container.content
+  %table
+    %tbody
+      %tr
+        %td.text-center{:style => "width: 30%;"} お名前:
+        %td= @contact.name
+      %tr
+        %td.text-center メッセージ:
+        %td{:style => "white-space: pre-wrap;"}= @contact.message
+  = form_with model: @contact, url: contacts_path, local: true do |f|
+    = f.hidden_field :name
+    = f.hidden_field :email
+    = f.hidden_field :phone_number
+    = f.hidden_field :message
+    %div= f.submit '送信' ,class: "btn btn-primary mt-2"
+  = form_with model:@contact, url: back_path, local: true do |f|
+    = f.hidden_field :name
+    = f.hidden_field :email
+    = f.hidden_field :phone_number
+    = f.hidden_field :message
+    %div= f.submit '入力画面に戻る' ,class: "btn btn-primary mt-2"
