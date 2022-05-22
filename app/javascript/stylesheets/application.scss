@@ -76,14 +76,6 @@ ul {
   width: 80%!important;
 }
 
-.main-visual{
-  text-align : center 
-}
-.main-image{
-  width: 800px;
-  height: 300px;
-  text-align: center;
-}
 
 @media screen and (min-width:760px){
 
@@ -143,3 +135,18 @@ background: linear-gradient(45deg, #757575 0%, #9E9E9E 45%, #E8E8E8 70%, #9E9E9E
 .product_form{
   display: flex;
 }
+
+.main-visual{/*親div*/
+  position: relative;/*相対配置*/
+  }
+
+.main-visual p {
+  position: absolute;/*絶対配置*/
+  color: white;/*文字は白に*/
+  top: 0;
+  left: 0;
+  }
+
+.main-image {
+  width: 100%;
+  }
