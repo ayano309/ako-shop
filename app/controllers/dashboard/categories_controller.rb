@@ -1,7 +1,7 @@
 class Dashboard::CategoriesController < ApplicationController
   before_action :authenticate_admin!, except: :index
   before_action :set_category, only: %w[show edit update destroy]
-  layout "dashboard/dashboard"
+  layout 'dashboard/dashboard'
 
   def index
     @categories = Category.display_list(params[:page])

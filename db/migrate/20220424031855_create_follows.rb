@@ -8,7 +8,7 @@ class CreateFollows < ActiveRecord::Migration[6.1]
       t.datetime :created_at
     end
 
-    add_index :follows, ["follower_id", "follower_type"],     :name => "fk_follows"
-    add_index :follows, ["followable_id", "followable_type"], :name => "fk_followables"
+    add_index :follows, ['follower_id', 'follower_type'],     :name => 'fk_follows'
+    add_index :follows, ['followable_id', 'followable_type'], :name => 'fk_followables'
   end
 end

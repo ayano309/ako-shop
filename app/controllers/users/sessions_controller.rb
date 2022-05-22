@@ -29,7 +29,7 @@ class Users::SessionsController < Devise::SessionsController
     @user = User.find_by(email: params[:user][:email].downcase)
     if @user
       if @user.deleted_flg?
-        flash[:alert] = "退会済みの会員様です。"
+        flash[:alert] = '退会済みの会員様です。'
         redirect_to new_user_session_path
       end
     end

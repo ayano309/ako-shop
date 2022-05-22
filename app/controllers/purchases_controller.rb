@@ -14,7 +14,6 @@ class PurchasesController < ApplicationController
     @cart_items = ShoppingCartItem.user_cart_items(@cart.id)
   end
 
-
   private
 
   def set_user

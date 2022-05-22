@@ -6,4 +6,3 @@ class ShoppingCartItem < ApplicationRecord
   #カートに入っているアイテムのidを持ってくる
   scope :user_cart_item_ids, -> (user_shoppingcart) { where(owner_id: user_shoppingcart).pluck(:item_id) }
 end
-

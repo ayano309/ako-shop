@@ -1,6 +1,6 @@
 class Dashboard::OrdersController < ApplicationController
   before_action :authenticate_admin!
-  layout "dashboard/dashboard"
+  layout 'dashboard/dashboard'
 
   def index
     if params[:code].present?

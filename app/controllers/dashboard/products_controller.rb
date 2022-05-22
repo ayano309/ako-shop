@@ -1,10 +1,10 @@
 class Dashboard::ProductsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_product, only: %w[show edit update destroy]
-  layout "dashboard/dashboard"
+  layout 'dashboard/dashboard'
 
   def index
-    @sorted = ""
+    @sorted = ''
     @sort_list = Product.sort_list
 
     if params[:sort].present?
@@ -15,7 +15,7 @@ class Dashboard::ProductsController < ApplicationController
       keyword = params[:keyword].strip
       @total_count = Product.search_for_id_and_name(keyword).count
       @products = Product.search_for_id_and_name(keyword).display_list(params[:pages])
-    else      
+    else
       @total_count = Product.count
       @products = Product.sort_order(@sorted).display_list(params[:page])
     end
@@ -29,7 +29,7 @@ class Dashboard::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     tag_list = params[:product][:tag_name].split(',')
-    
+
     if @product.save
       @product.save_tags(tag_list)
       redirect_to dashboard_products_path
@@ -66,16 +66,15 @@ class Dashboard::ProductsController < ApplicationController
   def download_csv
     send_file(
       "#{Rails.root}/public/csv/products.csv",
-      filename: "products.csv",
+      filename: 'products.csv',
       type: :csv
     )
   end
 
   def favorite_users
     @products = Product.all
-    
-  end
 
+  end
 
   private
     def set_product

@@ -3,21 +3,21 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    
+
   end
 
   def mypage
-  
+
   end
 
   def update_pasword
     if password_set?
       @user.update_password(user_params)
-      flash[:notice] = "パスワードは正しく変更されました"
+      flash[:notice] = 'パスワードは正しく変更されました'
       redirect_to root_path
     else
-      @user.errors.add(:password,"パスワードに不備があります。")
-      render "edit_password"
+      @user.errors.add(:password,'パスワードに不備があります。')
+      render 'edit_password'
     end
   end
 
@@ -38,12 +38,12 @@ class UsersController < ApplicationController
   #カード登録、更新画面
   def register_card
     # API秘密鍵を呼び出す
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     @count = 0
     card_info = {}
 
     # ログインユーザーのクレジットカード情報からPay.jpに登録されているカスタマー情報を引き出す
-    if @user.token != ""
+    if @user.token != ''
       result = Payjp::Customer.retrieve(@user.token).cards.all(limit: 1).data[0]
       @count = Payjp::Customer.retrieve(@user.token).cards.all.count
 
@@ -59,17 +59,17 @@ class UsersController < ApplicationController
 
   #カードcreate
   def token
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     customer = @user.token
 
-    if @user.token != ""
+    if @user.token != ''
       cu = Payjp::Customer.retrieve(customer)
-      delete_card = cu.cards.retrieve(cu.cards.data[0]["id"])
+      delete_card = cu.cards.retrieve(cu.cards.data[0]['id'])
       delete_card.delete
-      cu.cards.create(:card => params["payjp-token"])
+      cu.cards.create(:card => params['payjp-token'])
     else
       cu = Payjp::Customer.create
-      cu.cards.create(:card => params["payjp-token"])
+      cu.cards.create(:card => params['payjp-token'])
       @user.token = cu.id
       @user.save
     end

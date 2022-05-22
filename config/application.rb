@@ -1,6 +1,6 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 require 'csv'
 
 # Require the gems listed in Gemfile, including any gems
@@ -15,7 +15,7 @@ module AkoShop
     config.i18n.default_locale = :ja
 
     config.time_zone = 'Tokyo'
-    
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
