@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
-  
+
   acts_as_liker
   has_many :products
   has_many :reviews
@@ -12,7 +12,6 @@ class User < ApplicationRecord
   extend DisplayList
   # モジュールの読み込み ユーザーが退会済みかどうかをチェックする(user.rb)
   extend SwitchFlg
-
 
   validates :postal_code, presence: true,length: {maximum: 7, minimum: 7}, numericality: true
   validates :prefecture_code, presence: true
@@ -41,9 +40,8 @@ class User < ApplicationRecord
   end
 
   # postgresの時は::textを入れる
-  scope :search_information, -> (keyword) { 
-    where("name::text LIKE :keyword OR id::text LIKE :keyword OR email::text LIKE :keyword OR postal_code::text LIKE :keyword OR phone::text LIKE :keyword", keyword: "%#{keyword}%")
+  scope :search_information, -> (keyword) {
+    where('name::text LIKE :keyword OR id::text LIKE :keyword OR email::text LIKE :keyword OR postal_code::text LIKE :keyword OR phone::text LIKE :keyword', keyword: "%#{keyword}%")
   }
 
-  
 end

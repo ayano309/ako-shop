@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
 
-  def new 
+  def new
     @contact = Contact.new
   end
 
@@ -30,7 +30,7 @@ class ContactsController < ApplicationController
   end
   #送信完了
   def done
-    
+
   end
 
   private

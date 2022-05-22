@@ -30,9 +30,6 @@ class ProductsController < ApplicationController
     @recommend_products = Product.recommend_products(RECOMMEND_PRODUCTS_PER_PAGE)
   end
 
-  
-
-  
   def destroy
     product = Product.find(params[:id])
     product.destroy
@@ -42,7 +39,7 @@ class ProductsController < ApplicationController
   def favorite
     current_user.toggle_like!(@product)
     # redirect_to product_url @product
-    
+
   end
 
   private

@@ -5,8 +5,6 @@ class Tag < ApplicationRecord
 
   validates :name, uniqueness: true, presence: true
 
-  
-  
   #検索
   def self.search_products_for(content, method)
     if method == 'perfect'
@@ -15,6 +13,6 @@ class Tag < ApplicationRecord
 
     # injectはたたみ込み演算
     return tags.inject(init = []) {|result, tag| result + tag.products}
-    
+
   end
 end

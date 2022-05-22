@@ -11,22 +11,19 @@ class ShoppingCart < ApplicationRecord
 
   # 購入フラグがtrueのものを
   scope :bought_carts, -> { where(buy_flag: true) }
-  
+
   #受注番号検索
-  scope :search_carts_by_ids, -> (ids) { where("id::text LIKE ?", "%#{ids}%") }
+  scope :search_carts_by_ids, -> (ids) { where('id::text LIKE ?', "%#{ids}%") }
   #検索した受注番号を持ってくる”＋購入フラグがtrue”
   scope :search_bought_carts_by_ids, -> (ids) { bought_carts.search_carts_by_ids(ids) }
 
   #購入履歴の一覧  購入フラグがtrueのuser_idが一致したuserを持ってくる
   scope :search_carts_by_user, -> (user) { where(user_id: user) }
-  scope :search_bought_carts_by_user, -> (user) { bought_carts.search_carts_by_user(user) }  
+  scope :search_bought_carts_by_user, -> (user) { bought_carts.search_carts_by_user(user) }
 
-
-  
   #送料 acts_as_shopping_cartはもともとUSD（米ドル）。CARRIAGEという定数に日本円で金額を代入し、その金額を100倍した値を引数として渡す
   CARRIAGE = 400
   FREE_SHIPPING = 0
-
 
   # shipping_costメソッドではカート内の商品の送料有無carriage_flagの値を取得し、1つでもtrueの商品が含まれていれば合計金額に送料を加算する
   def shipping_cost

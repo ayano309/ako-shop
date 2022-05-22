@@ -30,12 +30,11 @@ before_action :set_cart, only: %i[index create destroy all_destroy]
     redirect_to cart_users_path
   end
 
-
   #カートの中身を空にする
   def all_destroy
     user_cart_items = ShoppingCartItem.user_cart_items(@user_cart)
     if user_cart_items.destroy_all
-      flash[:notice] = "カート商品を全て削除しました"
+      flash[:notice] = 'カート商品を全て削除しました'
       redirect_to cart_users_path
     else
       @user_cart_items = ShoppingCartItem.user_cart_items(@user_cart)
@@ -44,26 +43,23 @@ before_action :set_cart, only: %i[index create destroy all_destroy]
 
   end
 
-
   def destroy
     @user_cart.buy_flag = true
     @user_cart.save
 
     #購入時に決済できるように
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    Payjp::Charge.create( 
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp::Charge.create(
                           :customer => current_user.token,
                           :amount => @user_cart.total.to_i,
                           :currency => 'jpy'
                         )
 
-
-
     redirect_to cart_users_path
   end
 
   private
-  
+
   def product_params
     params.permit(:product_id, :price, :quantity)
   end
