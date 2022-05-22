@@ -19,7 +19,7 @@
       <div class="col-6 col-md-4">
         <%= link_to product_path(product) do %>
           <% if product.image.attached? %>
-            <%= image_tag product.image, class: "" ,width:"300",height: "300"%>
+            <%= image_tag product.image, class: "img-thumbnail" %>
           <% else %>
             <%= image_tag "salt.png", class: "img-thumbnail" %>
           <% end %>

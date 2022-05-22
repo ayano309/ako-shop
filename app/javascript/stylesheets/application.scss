@@ -138,15 +138,32 @@ background: linear-gradient(45deg, #757575 0%, #9E9E9E 45%, #E8E8E8 70%, #9E9E9E
 
 .main-visual{/*親div*/
   position: relative;/*相対配置*/
-  }
+}
+.main-visual p{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  margin:0;/*余計な隙間を除く*/
+  padding:0;/*余計な隙間を除く*/
+  color: white;/*文字色*/
+  font-size: 80px;/*文字サイズ*/
+  text-align:center;/*pタグ内で更に中央寄せ*/
+  font-family: 'Quicksand',sans-serif;
+}
 
-.main-visual p {
-  position: absolute;/*絶対配置*/
-  color: white;/*文字は白に*/
-  top: 0;
-  left: 0;
-  }
+.coffe-icon {
+  display:block;/*前後に改行*/
+  margin: 0 auto;
+  padding-bottom:10px;/*文字との隙間*/
+  font-size: 3em;/*文字の3倍のサイズに*/
+  color: rgba(255, 255, 255, 0.6);/*半透明*/
+  
+}
+
 
 .main-image {
   width: 100%;
-  }
+}
