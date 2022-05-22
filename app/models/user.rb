@@ -44,4 +44,10 @@ class User < ApplicationRecord
     where('name::text LIKE :keyword OR id::text LIKE :keyword OR email::text LIKE :keyword OR postal_code::text LIKE :keyword OR phone::text LIKE :keyword', keyword: "%#{keyword}%")
   }
 
+  def self.guest
+    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com',postal_code:'1970003',prefecture_code:'東京都',city:'福生市',street:'熊川',other_address: 'その他',phone:'07012345678') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+    end
+  end
 end

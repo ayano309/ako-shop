@@ -1,7 +1,14 @@
-.row
+.main-visual
+  = image_tag "image5.jpg", class: "main-image"
+  %p
+    %i.fas.fa-coffee.coffe-icon>
+    AkoShop.
+
+.row.mt-5
   .container
     - if @category.present?
-      = @category.name
+      .category-title
+        = @category.name
       = form_with url: products_path, method: :get, local: true, class: "form-inline" do |f|
         = f.hidden_field :sort_category, value: @category.id
         - if @sorted.present?

@@ -5,9 +5,10 @@
   .w-90
     .d-flex.justify-content-between
       %h2 アカウント情報の変更
-      .d-flex.align-items-center
-        = link_to edit_user_registration_path do
-          %button.btn.btn-outline-secondary.ml-5{:type => "button"} 変更する
+      - if @user.name != "guestuser"
+        .d-flex.align-items-center
+          = link_to edit_user_registration_path do
+            %button.btn.btn-outline-secondary.ml-5{:type => "button"} 変更する
     %hr/
     .container
       .d-flex.justify-content-between
