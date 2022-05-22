@@ -1,0 +1,27 @@
+.container.d-flex.justify-content-center.mt-3
+  .w-75.content
+    %h2 お気に入り
+    %hr/
+    .row
+      - @favorites.each do |favorite|
+        .col-md-6.mt-2
+          .d-inline-flex
+            = link_to product_path(favorite), class: "w-25" do
+              - if favorite.image.attached?
+                = image_tag favorite.image, class: "img-fuild w-100"
+              - else
+                = image_tag "salt.png", class: "img-fuild w-100"
+            .container.mt-3
+              %h5.w-100.favorite-item-text= favorite.name
+              %h6.w-100.favorite-item-text
+                ￥#{favorite.price.to_s(:delimited)}
+        .col-md-2.d-flex.align-items-center.justify-content-end
+          = link_to product_path(favorite), class: "favorite-item-delete" do
+            削除
+        .col-md-4.d-flex.align-items-center.justify-content-end
+          = form_with url: cart_create_users_path, local: true do |f|
+            = f.hidden_field :product_id, value: favorite.id
+            = f.hidden_field :price, value: favorite.price
+            = f.hidden_field :quantity, value: 1
+            = f.submit "カートに入れる", class: "btn btn-primary text-white w-100"
+    %hr/

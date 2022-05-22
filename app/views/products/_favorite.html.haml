@@ -1,0 +1,6 @@
+- if current_user.likes?(product)
+  %i.fas.fa-heart{"aria-hidden" => "true", :style => "color: red;"}
+  お気に入り解除
+- else
+  %i.fas.fa-heart{"aria-hidden" => "true"}
+  お気に入り追加

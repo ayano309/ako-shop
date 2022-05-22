@@ -1,0 +1,18 @@
+.container
+  .row.justify-content-center.content
+    .col-md-5
+      %h3.mt-3.mb-3 パスワード再設定
+      %p
+        ご登録時のメールアドレスを入力してください。
+        %br/
+        パスワード再発行用のメールをお送りします。
+      %hr/
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        .form-group
+          = f.email_field :email,  |
+            class: "form-control", |
+            autofocus: "true",     |
+            autocomplete: "email", |
+            placeholder: "メールアドレス" |
+        .form-group
+          = f.submit "送信", class: "btn btn-primary w-100"

@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Ako shop
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_pack_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    = render 'layouts/dashboard/header'
+    .row
+      .col-md-4.mt-3
+        = render partial: 'layouts/dashboard/sidebar'
+      .col
+        %main.py-4.mb-5
+          = yield

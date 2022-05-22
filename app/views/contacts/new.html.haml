@@ -1,0 +1,10 @@
+.container.content
+  = form_with model: @contact , url: confirm_path, local: true do |f|
+    .form-group
+      = f.label :name, 'お名前'
+      = f.text_field :name, autofocus: true, class: 'form-control'
+    .form-group
+      = f.label :message, 'メッセージ'
+      = f.text_area :message, size: '10x10',class: 'form-control'
+    %div
+      = f.submit '入力内容確認' ,class: "btn btn-primary d-block mx-auto"

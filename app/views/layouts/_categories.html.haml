@@ -1,0 +1,10 @@
+%ul.navbar-nav.ml-auto
+  %li.nav-item.dropdown
+    = link_to "#", id: "Dropdown", class: "mx-auto",                                                 |
+      role: "button", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } do |
+      %p CATEGORY
+      %span.caret
+    .dropdown-menu.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+      - categories.each do |category|
+        = link_to category.name, products_path(category: category.id)
+        %br/

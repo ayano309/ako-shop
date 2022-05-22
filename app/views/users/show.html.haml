@@ -1,0 +1,38 @@
+.container
+  = link_to "マイページ", mypage_users_path
+  \&gt; #{link_to "アカウント設定" , mypage_show_users_path}
+.container.d-flex.justify-content-center.mt-3.content
+  .w-90
+    .d-flex.justify-content-between
+      %h2 アカウント情報の変更
+      .d-flex.align-items-center
+        = link_to edit_user_registration_path do
+          %button.btn.btn-outline-secondary.ml-5{:type => "button"} 変更する
+    %hr/
+    .container
+      .d-flex.justify-content-between
+        .row
+          .col.d-flex.align-items-center.ml-2.mt-3
+            .d-flex.flex-column
+              %label{:for => "user-name"} お名前
+              %p= current_user.name
+    %hr/
+    .container
+      .d-flex.justify-content-between
+        .row
+          .col.d-flex.align-items-center.ml-2.mt-3
+            .d-flex.flex-column
+              %label{:for => "user-name"} ご住所
+              %p
+                = current_user.postal_code
+                %br/
+                = current_user.prefecture_code + current_user.city + current_user.street + current_user.other_address
+    %hr/
+    .container
+      .d-flex.justify-content-between
+        .row
+          .col-12.d-flex.align-items-center.ml-2.mt-3
+            .d-flex.flex-column
+              %label{:for => "user-name"} 電話番号
+              %p= current_user.phone
+    %hr/

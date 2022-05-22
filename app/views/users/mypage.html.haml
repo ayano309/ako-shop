@@ -1,0 +1,63 @@
+.container.d-flex.justify-content-center.mt-3.content
+  .w-90
+    .d-flex.justify-content-between
+      %h2 マイページ
+      .d-flex.align-items-center
+        = link_to logout_path, method: :delete do
+          %button.btn.btn-outline-secondary{:type => "button"} ログアウト
+    %hr/
+    .container
+      .d-flex.justify-content-between
+        .row
+          .col.d-flex.align-items-center.ml-2.mt-3
+            .d-flex.flex-column
+              %label{:for => "user-name"} アカウント設定
+              %p アカウント情報の編集
+        .d-flex.align-items-center
+          = link_to mypage_show_users_path do
+            %i.fas.fa-chevron-right.fa-2x{:style => "color:gray;"}
+    %hr/
+    .container
+      .d-flex.justify-content-between
+        .row
+          .col-9.d-flex.align-items-center.ml-2.mt-3
+            .d-flex.flex-column
+              %label{:for => "user-name"} クレジットカードの登録
+              %p クレジットカードの登録
+        .d-flex.align-items-center
+          = link_to mypage_register_card_users_path do
+            %i.fas.fa-chevron-right.fa-2x{:style => "color:gray;"}
+    %hr/
+    .container
+      .d-flex.justify-content-between
+        .row
+          .col.d-flex.align-items-center.ml-2.mt-3
+            .d-flex.flex-column
+              %label{:for => "user-name"} パスワード変更
+              %p パスワードを変更します
+        .d-flex.align-items-center
+          = link_to mypage_edit_password_users_path do
+            %i.fas.fa-chevron-right.fa-2x{:style => "color:gray;"}
+    %hr/
+    .container
+      .d-flex.justify-content-between
+        .row
+          .col.d-flex.align-items-center.ml-2.mt-3
+            .d-flex.flex-column
+              %label{:for => "user-name"} 購入履歴
+              %p 過去の購入履歴を確認できます
+        .d-flex.align-items-center
+          = link_to mypage_purchases_users_path do
+            %i.fas.fa-chevron-right.fa-2x{:style => "color:gray;"}
+    %hr/
+    .container
+      .d-flex.justify-content-between
+        .row
+          .col-12.d-flex.align-items-center.ml-2.mt-3
+            .d-flex.flex-column
+              %label{:for => "user-name"} お気に入り
+              %p お気に入り登録したアイテムを確認できます
+        .d-flex.align-items-center
+          = link_to logout_path, method: :delete do
+            %i.fas.fa-chevron-right.fa-2x{:style => "color:gray;"}
+    %hr/

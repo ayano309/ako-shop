@@ -1,0 +1,83 @@
+.d-flex.justify-content-center.content
+  .row.w-75
+    .col-md-4.mr-2
+      - if @product.image.attached?
+        = image_tag @product.image,class: "img-thumbnail product_image"
+        %div{:class => add_active_class}
+          %span.triangle
+          - if @product.soldout_flag
+            %span.label Sold
+      - else
+        = image_tag "salt.png", class: "img-thumbnail"
+    .col-md-4
+      .d-flex.flex-column
+        .review_avg
+          %h1= @product.name
+          = link_to product_reviews_path(@product),class: "btn btn-outline-warning text-dark btn-sm ml-2"  do
+            %div{:id => "star-rate-#{@product.id}"}
+              Review #{@product.reviews.count}件  
+              %br/
+            :javascript
+              $('#star-rate-#{@product.id}').raty({
+                size: 36,
+                starOff:  '#{asset_path('star-off.png')}',
+                starOn : '#{asset_path('star-on.png')}',
+                starHalf: '#{asset_path('star-half.png')}',
+                half: true,
+                readOnly: true,
+                score: #{@product.reviews.average(:rate).to_f.round(1)},
+              });
+        %p.d-flex.align-items-end.item-price
+          ￥#{@product.price.to_s(:delimited)}
+          %span.ml-2 税込
+      = form_with url: cart_create_users_path, local: true do |f|
+        = f.hidden_field :product_id, value: @product.id
+        = f.hidden_field :name, value: @product.name
+        = f.hidden_field :price, value: @product.price
+        .form-group.row
+          = f.label "数量", class: "col-sm-2 col-form-label"
+          .col-sm-10
+            = f.number_field :quantity, min:1, value:1, class: "form-control w-25"
+        .row
+          - if user_signed_in?
+            = render 'products/modal'
+            - if @product.soldout_flag
+              = link_to new_contact_path, class: 'btn btn-outline-dark btn-block mt-3' do
+                %p 再入荷お知らせ
+            - else
+              = f.submit "カートに入れる", class: "btn btn-primary w-100 mb-2" do
+                %i.fas.fa-shopping-cart
+            = link_to favorite_product_path, class: "btn btn-outline-dark text-favorite mt-2 mb-5",remote: true do
+              #favorite-product
+                = render "products/favorite", product: @product
+          - else
+            = link_to new_user_session_path do
+              %button.btn.btn-primary.w-100 カートに追加
+        .row
+          %p= @product.description
+          .tag
+            - @product.tags.each do |tag|
+              = link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") ,class: "tag_name"
+          = link_to new_contact_path, class: 'btn btn-outline-dark btn-block mt-3' do
+            %i.fas.fa-envelope>
+            アイテムについて問い合わせ
+%hr/
+%div
+  .container
+    %h3.title おすすめアイテム
+    .row
+      - @recommend_products.each do |recommend_product|
+        .col-4.col-md-2.product-box
+          = link_to product_path(recommend_product) do
+            - if recommend_product.image.attached?
+              = image_tag recommend_product.image, class: "img-thumbnail"
+            - else
+              = image_tag "salt.png", class: "img-thumbnail"
+          .row
+            .col-12
+              %p.product-lavel.mt-2
+                = recommend_product.name
+                %label
+                  ￥#{recommend_product.price.to_s(:delimited)}
+= link_to  products_path  do
+  %button.btn.btn-secondary.btn-lg.mx-auto.d-block 商品一覧に戻る
