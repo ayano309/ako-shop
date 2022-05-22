@@ -62,3 +62,7 @@
 * gem 'hamlit'
 * gem 'erb2haml'
 * gem 'rubocop-rails'
+
+# その他
+* jpostal.js
+* raty.js
