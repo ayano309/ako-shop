@@ -26,5 +26,4 @@ class HomeController < ApplicationController
   def sort_params
     params.permit(:sort, :sort_category)
   end
-  
 end

@@ -1,5 +1,52 @@
 .main-visual
   = image_tag "image5.jpg", class: "main-image"
-  %p
-    %i.fas.fa-coffee.coffe-icon>
+  %p.main-visual_title
+    %i.fas.fa-coffee.coffe-icon
     AkoShop.
+.row.mt-5
+  .container
+    %h3.title おすすめ商品
+    .row
+      .col-6.col-md-4
+        = image_tag "image5.jpg", class: "img-thumbnail"
+        .row
+          .col-12
+            %p.mt-2
+              マダカミア
+              %br/
+              %label￥1,788    
+      .col-6.col-md-4
+        = image_tag "image5.jpg", class: "img-thumbnail"
+        .row
+          .col-12
+            %p.mt-2
+              キリマンジャロ
+              %br/
+              %label¥500 
+      .col-6.col-md-4
+        = image_tag "image5.jpg", class: "img-thumbnail"
+        .row
+          .col-12
+            %p.mt-2
+              ブラジル
+              %br/
+              %label¥500 
+.content
+  .container
+    %h3.title Ranking
+    .row
+      - @rank_products.each.with_index(1) do |product, i|
+        .col-4.col-md-2.product-box
+          %p{:class => "box-step #{way_color(i)}"}= i
+          = link_to product_path(product) do
+            - if product.image.attached?
+              = image_tag product.image,size:'120x120'
+            - else
+              = image_tag "salt.png", class: "img-thumbnail"
+          .row
+            .col-12
+              %p.product-lavel.mt-2
+                = product.name
+                %br/
+                %label
+                  ¥ #{product.price.to_s(:delimited)}
