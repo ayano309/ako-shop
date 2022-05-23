@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'home#top'
-  get 'home/about'
+  get 'home/about',as: 'about'
   # 管理者関連
   devise_for :admins, :controllers => {
     :sessions => 'admins/sessions'

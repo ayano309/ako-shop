@@ -4,7 +4,7 @@
       %ul#header-menu
         %li.header-menu-li= link_to "HOME",products_path ,class:"link-btn"
         %li.header-menu-li= link_to "NEWS",products_path ,class:"link-btn"
-        %li.header-menu-li= link_to "ABOUT",products_path ,class:"link-btn"
+        %li.header-menu-li= link_to "ABOUT",about_path ,class:"link-btn"
         %li.header-menu-li.dropdown
           .dropbtn.nav-dropbtn CATEGORY
           .dropdown-content
@@ -27,7 +27,7 @@
           %h1.g-nav-title HOME
         = link_to products_path ,class:"link-btn" do
           %h1.g-nav-title NEWS
-        = link_to products_path ,class:"link-btn" do
+        = link_to about_path ,class:"link-btn" do
           %h1.g-nav-title ABOUT
         %li.header-menu-li.dropdown
           .dropbtn.nav-dropbtn
