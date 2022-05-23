@@ -1,54 +1,7 @@
 .main-visual
   = image_tag "image5.jpg", class: "main-image"
-  %p
-    %i.fas.fa-coffee.coffe-icon>
+  %p.main-visual_title
+    %i.fas.fa-coffee.coffe-icon
     AkoShop.
 
-.row.mt-5
-  .container
-    - if @category.present?
-      .category-title
-        = @category.name
-      = form_with url: products_path, method: :get, local: true, class: "form-inline" do |f|
-        = f.hidden_field :sort_category, value: @category.id
-        - if @sorted.present?
-          = f.select :sort, @sort_list, selected: @sorted, onChange: "javascript: this.form.submit();", class: "form-inline ml-2"
-        - else
-          = f.select :sort, @sort_list, {}, onChange: "javascript: this.form.submit();", class: "form-inline ml-2"
-  .container.mt-2
-    .row
-      - @products.each do |product|
-        .col-6.col-md-4
-          = link_to product_path(product) do
-            - if product.image.attached?
-              = image_tag product.image, class: "img-thumbnail"
-            - else
-              = image_tag "salt.png", class: "img-thumbnail"
-          .row
-            .col-12
-              %p.mt-2
-                %strong= product.name
-                %br/
-                %label
-                  ¥#{product.price.to_s(:delimited)}
-= paginate @products
-%hr/
-.content
-  .container
-    %h3.title Ranking
-    .row
-      - @rank_products.each.with_index(1) do |product, i|
-        .col-4.col-md-2.product-box
-          %p{:class => "box-step #{way_color(i)}"}= i
-          = link_to product_path(product) do
-            - if product.image.attached?
-              = image_tag product.image,size:'120x120'
-            - else
-              = image_tag "salt.png", class: "img-thumbnail"
-          .row
-            .col-12
-              %p.product-lavel.mt-2
-                = product.name
-                %br/
-                %label
-                  ¥ #{product.price.to_s(:delimited)}
+= render 'product'

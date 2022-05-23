@@ -13,7 +13,7 @@ class User < ApplicationRecord
   # モジュールの読み込み ユーザーが退会済みかどうかをチェックする(user.rb)
   extend SwitchFlg
 
-  validates :postal_code, presence: true,length: {maximum: 7, minimum: 7}, numericality: true
+  validates :postal_code, presence: true,length: {maximum: 8, minimum: 7}, numericality: true
   validates :prefecture_code, presence: true
   validates :city, presence: true
   validates :street, presence: true

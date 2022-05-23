@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root to: 'home#top'
+  get 'home/about',as: 'about'
   # 管理者関連
   devise_for :admins, :controllers => {
     :sessions => 'admins/sessions'
@@ -11,35 +13,6 @@ Rails.application.routes.draw do
     post 'dashboard/login', :to => 'admins/sessions#create'
     delete 'dashboard/logout', :to => 'admins/sessions#destroy'
   end
-
-  # URLは指定のパスにしたい,ファイル構成も指定のパスにしたいとき、namescope
-  # URLは指定のパスにしたい,ファイル構成変えたくないとき、scope
-
-  namespace :dashboard do
-    resources :users, only: [:index, :destroy]
-    resources :categories, except: [:new]
-    resources :products, except: [:show] do
-      collection do
-        get  'import/csv', :to => 'products#import'
-        post 'import/csv', :to => 'products#import_csv'
-        get  'import/csv_download', :to => 'products#download_csv'
-        get  '/favorite', :to => 'products#favorite_users'
-      end
-    end
-    resources :orders, only: [:index]
-  end
-
-  # 商品関連
-  root to: 'products#index'
-  resources :products do
-    resources :reviews, only: [:index, :create]
-    member do
-      get :favorite
-    end
-  end
-
-  #検索
-  get '/search', to: 'searches#search'
 
   # user関連
   devise_for :users, :controllers => {
@@ -60,6 +33,36 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
 
+
+  # URLは指定のパスにしたい,ファイル構成も指定のパスにしたいとき、namescope
+  # URLは指定のパスにしたい,ファイル構成変えたくないとき、scope
+
+  namespace :dashboard do
+    resources :users, only: [:index, :destroy]
+    resources :categories, except: [:new]
+    resources :products, except: [:show] do
+      collection do
+        get  'import/csv', :to => 'products#import'
+        post 'import/csv', :to => 'products#import_csv'
+        get  'import/csv_download', :to => 'products#download_csv'
+        get  '/favorite', :to => 'products#favorite_users'
+      end
+    end
+    resources :orders, only: [:index]
+  end
+
+  # 商品関連
+  resources :products do
+    resources :reviews, only: [:index, :create]
+    member do
+      get :favorite
+    end
+  end
+
+  #検索
+  get '/search', to: 'searches#search'
+
+
   # userに関するページ
 
   resource :users, only: [:show] do
@@ -72,6 +75,7 @@ Rails.application.routes.draw do
       delete 'deletecart', :to => 'shopping_carts#all_destroy'
       #購入する
       delete 'cart', :to => 'shopping_carts#destroy'
+      delete 'guestcart', :to => 'shopping_carts#guest_destroy'
       #アカウント情報の変更
       get 'mypage/show', :to => 'users#show'
       #マイページ

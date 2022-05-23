@@ -15,7 +15,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color: #F0F7B6;
+  background-color: #EBC1B2;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
@@ -96,9 +96,7 @@ ul {
       margin-left: 90%;
     }
 
-    .main-image{
-      width:100%;
-    }
+  
   }
 
 
@@ -138,20 +136,20 @@ background: linear-gradient(45deg, #757575 0%, #9E9E9E 45%, #E8E8E8 70%, #9E9E9E
 
 .main-visual{/*親div*/
   position: relative;/*相対配置*/
-}
-.main-visual p{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%,-50%);
-  -webkit-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
-  margin:0;/*余計な隙間を除く*/
-  padding:0;/*余計な隙間を除く*/
-  color: white;/*文字色*/
-  font-size: 80px;/*文字サイズ*/
-  text-align:center;/*pタグ内で更に中央寄せ*/
-  font-family: 'Quicksand',sans-serif;
+  &_title{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    margin:0;/*余計な隙間を除く*/
+    padding:0;/*余計な隙間を除く*/
+    color: white;/*文字色*/
+    font-size: 60px;/*文字サイズ*/
+    text-align:center;/*pタグ内で更に中央寄せ*/
+    font-family: 'Quicksand',sans-serif;
+  }
 }
 
 .coffe-icon {
@@ -170,5 +168,9 @@ background: linear-gradient(45deg, #757575 0%, #9E9E9E 45%, #E8E8E8 70%, #9E9E9E
 
 .category-title{
   font-size: 20px;
+  font-weight: bold;
+}
+
+.title{
   font-weight: bold;
 }
