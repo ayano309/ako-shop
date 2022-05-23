@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user
   before_action :authenticate_user!
-  before_action :ensure_guest_user, only: [:edit_password,:update_pasword,:destroy]
+  before_action :ensure_guest_user, only: [:edit_password,:update_pasword]
 
   def show
 
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     # ユーザーが退会処理をするとき
     @user.deleted_flg = User.switch_flg(@user.deleted_flg)
     @user.update(deleted_flg: @user.deleted_flg)
-    redirect_to mypage_users_path
+    redirect_to root_path
   end
 
   #カード登録、更新画面

@@ -14,6 +14,26 @@ Rails.application.routes.draw do
     delete 'dashboard/logout', :to => 'admins/sessions#destroy'
   end
 
+  # user関連
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations',
+    :sessions => 'users/sessions',
+    :passwords => 'users/passwords',
+    :confirmations => 'users/confirmations',
+    :unlocks => 'users/unlocks',
+  }
+
+  # userのサインアップなど
+
+  devise_scope :user do
+    get 'signup', :to => 'users/registrations#new'
+    get 'login', :to => 'users/sessions#new'
+    delete 'logout', :to => 'users/sessions#destroy'
+    #ゲストログイン
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
+
+
   # URLは指定のパスにしたい,ファイル構成も指定のパスにしたいとき、namescope
   # URLは指定のパスにしたい,ファイル構成変えたくないとき、scope
 
@@ -42,24 +62,6 @@ Rails.application.routes.draw do
   #検索
   get '/search', to: 'searches#search'
 
-  # user関連
-  devise_for :users, :controllers => {
-    :registrations => 'users/registrations',
-    :sessions => 'users/sessions',
-    :passwords => 'users/passwords',
-    :confirmations => 'users/confirmations',
-    :unlocks => 'users/unlocks',
-  }
-
-  # userのサインアップなど
-
-  devise_scope :user do
-    get 'signup', :to => 'users/registrations#new'
-    get 'login', :to => 'users/sessions#new'
-    delete 'logout', :to => 'users/sessions#destroy'
-    #ゲストログイン
-    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
-  end
 
   # userに関するページ
 
@@ -73,6 +75,7 @@ Rails.application.routes.draw do
       delete 'deletecart', :to => 'shopping_carts#all_destroy'
       #購入する
       delete 'cart', :to => 'shopping_carts#destroy'
+      delete 'guestcart', :to => 'shopping_carts#guest_destroy'
       #アカウント情報の変更
       get 'mypage/show', :to => 'users#show'
       #マイページ

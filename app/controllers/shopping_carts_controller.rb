@@ -1,5 +1,5 @@
 class ShoppingCartsController < ApplicationController
-before_action :set_cart, only: %i[index create destroy all_destroy]
+before_action :set_cart, only: %i[index create destroy all_destroy guest_destroy]
 
   def index
     # カートに入っているすべての商品データ
@@ -55,6 +55,12 @@ before_action :set_cart, only: %i[index create destroy all_destroy]
                           :currency => 'jpy'
                         )
 
+    redirect_to cart_users_path
+  end
+
+  def guest_destroy
+    @user_cart.buy_flag = true
+    @user_cart.save
     redirect_to cart_users_path
   end
 
