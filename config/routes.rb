@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root to: 'home#top'
+  get 'home/about'
   # 管理者関連
   devise_for :admins, :controllers => {
     :sessions => 'admins/sessions'
@@ -30,7 +32,6 @@ Rails.application.routes.draw do
   end
 
   # 商品関連
-  root to: 'products#index'
   resources :products do
     resources :reviews, only: [:index, :create]
     member do
