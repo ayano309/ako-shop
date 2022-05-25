@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   end
 
-  def update_pasword
+  def update_password
     if password_set?
       @user.update_password(user_params)
       flash[:notice] = 'パスワードは正しく変更されました'
@@ -96,5 +96,5 @@ class UsersController < ApplicationController
       if @user.name == "guestuser"
         redirect_to root_path , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
       end
-    end  
+    end
 end
