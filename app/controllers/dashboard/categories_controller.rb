@@ -8,9 +8,6 @@ class Dashboard::CategoriesController < ApplicationController
     @category = Category.new
 
   end
-  def show
-
-  end
 
   def create
     category = Category.new(category_params)

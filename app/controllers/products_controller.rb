@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :favorite]
+  before_action :set_product, only: [:show, :favorite]
   PER = 15
   RECOMMEND_PRODUCTS_PER_PAGE = 6
 
@@ -30,12 +30,7 @@ class ProductsController < ApplicationController
     @recommend_products = Product.recommend_products(RECOMMEND_PRODUCTS_PER_PAGE)
   end
 
-  def destroy
-    product = Product.find(params[:id])
-    product.destroy
-    redirect_to products_path
-  end
-
+  
   def favorite
     current_user.toggle_like!(@product)
     # redirect_to product_url @product

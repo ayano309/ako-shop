@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     resources :users, only: [:index, :destroy]
-    resources :categories, except: [:new]
+    resources :categories, except: [:show,:new]
     resources :products, except: [:show] do
       collection do
         get  'import/csv', :to => 'products#import'
@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   end
 
   # 商品関連
-  resources :products do
+  resources :products, only: [:index, :show] do
     resources :reviews, only: [:index, :create]
     member do
       get :favorite

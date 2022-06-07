@@ -151,6 +151,11 @@ background: linear-gradient(45deg, #757575 0%, #9E9E9E 45%, #E8E8E8 70%, #9E9E9E
     font-family: 'Quicksand',sans-serif;
   }
 }
+.main-visual_title{
+  @media screen and (max-width:760px){
+    font-size:30px;
+  }
+}
 
 .coffe-icon {
   display:block;/*前後に改行*/
@@ -165,12 +170,12 @@ background: linear-gradient(45deg, #757575 0%, #9E9E9E 45%, #E8E8E8 70%, #9E9E9E
 .main-image {
   width: 100%;
 }
-
+//カテゴリーの見出し
 .category-title{
   font-size: 20px;
   font-weight: bold;
 }
-
+//全部の見出し
 .title{
   font-weight: bold;
 }
