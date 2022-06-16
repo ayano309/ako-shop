@@ -1,0 +1,18 @@
+.container.py-3
+  .row
+    .col-12
+      .text-center.my-2
+        = link_to "https://www.twitter.com/", target: :_blank, rel: "noopener noreferrer" do
+          %i.fab.fa-twitter.fa-2x.mr-1.footer-text
+        = link_to "https://www.instagram.com/", target: :_blank, rel: "noopener noreferrer" do
+          %i.fab.fa-instagram.fa-2x.mr-1.footer-text
+        = link_to new_contact_path do
+          %i.far.fa-envelope.fa-2x.mr-1.footer-text
+      = link_to "管理者の方はこちら" ,new_admin_session_path,class: "btn btn-outline-secondary mx-auto d-block "
+      .text-center.footer-text
+        = link_to "利用規約", terms_path, class:"footer-text"
+        \/
+        
+        \#{link_to "プライバシーポリシー", privacy_path, class:"footer-text"}
+        .copyright
+          %p Copyright © 2022.Ako-shop

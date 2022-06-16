@@ -19,8 +19,12 @@ class HomeController < ApplicationController
     @rank_products = Product.find(ShoppingCartItem.group(:item_id).order('count(item_id) desc').limit(5).pluck(:item_id))
   end
 
-  def about
-  end
+  def about; end
+  
+  def terms; end
+
+  def privacy; end
+
 
   private
   def sort_params

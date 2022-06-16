@@ -42,7 +42,7 @@
           %p{:class => "box-step #{way_color(i)}"}= i
           = link_to product_path(product) do
             - if product.image.attached?
-              = image_tag product.image,size:'120x120'
+              = image_tag product.image,size:'80x80'
             - else
               = image_tag "salt.png", class: "img-thumbnail"
           .row
