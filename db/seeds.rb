@@ -13,3 +13,8 @@ categories.each do |category|
     name: category
   )
 end
+
+Admin.create!(
+  email: 'admin@example.com',
+  password: 'password',
+)
