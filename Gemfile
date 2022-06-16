@@ -49,6 +49,8 @@ group :development do
   gem 'dotenv-rails'
   gem 'spring'
   gem 'erb2haml'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
@@ -76,7 +78,6 @@ gem 'roo'
 # クレジットカード決済機能を導入できる
 gem 'payjp'
 
-gem 'better_errors'
-gem 'binding_of_caller'
+
 gem 'pry-rails'
 gem 'hamlit'
