@@ -1,58 +1,9 @@
 .container
   .row.justify-content-center
-    .col-md-8
+    .col-md-12
       %span
         = link_to "マイページ", mypage_users_path
         \&gt; #{link_to "購入履歴", mypage_purchases_users_path} &gt; 購入履歴詳細
       .content.mt-3
         %h1.purchase-title 購入履歴詳細
-        %h4.mt-3 ご注文情報
-        %hr/
-        .row
-          .col-5.mt-2
-            注文番号
-          .col-7.mt-2
-            = @cart.id
-          .col-5.mt-2
-            注文日時
-          .col-7.mt-2
-            = @cart.updated_at.strftime("%Y-%m-%d %H:%M:%S")
-          .col-5.mt-2
-            商品の小計
-          .col-7.mt-2
-            ￥#{((@cart.total - @cart.shipping_cost).fractional / 100 ).to_s(:delimited)}
-          .col-5.mt-2
-            送料
-          .col-7.mt-2
-            ￥#{(@cart.shipping_cost.fractional / 100).to_s(:delimited)}
-          .col-5.mt-2
-            合計金額
-          .col-7.mt-2
-            ￥#{(@cart.total.fractional / 100).to_s(:delimited)}
-          .col-5.mt-2
-            点数
-          .col-7.mt-2
-            = ShoppingCartItem.user_cart_items(@cart.id).count
-            点
-        %hr/
-        .row
-          - @cart_items.each do |cart_item|
-            - product = Product.find(cart_item.item_id)
-            .col-md-5.mt-2
-              = link_to product_path(product), class: "ml-4" do
-                - if product.image.attached?
-                  = image_tag product.image, width:"200", height: "200"
-                - else
-                  = image_tag "jam.png", width:"200", height: "200"
-            .col-md-7.mt-2
-              .flex-cloumn
-                %p.mt-4= product.name
-                .row
-                  .col-2.mt-2
-                    数量
-                  .col-10.mt-2
-                    = cart_item.quantity
-                  .col-2.mt-2
-                    小計
-                  .col-10.mt-2
-                    ￥#{price = (cart_item.price_cents * cart_item.quantity).to_s(:delimited)}
+        = render 'show'
