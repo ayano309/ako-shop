@@ -11,4 +11,9 @@ class Dashboard::OrdersController < ApplicationController
       @orders = ShoppingCart.bought_carts.page(params[:page]).per(15)
     end
   end
+
+  def show
+    @cart = ShoppingCart.find(params[:id])
+    @cart_items = ShoppingCartItem.user_cart_items(@cart.id)
+  end
 end

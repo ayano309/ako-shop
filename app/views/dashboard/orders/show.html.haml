@@ -1,0 +1,11 @@
+.container
+  .row.justify-content-center
+    .col-md-12
+      %span
+        = link_to "受注一覧", dashboard_orders_path
+        \&gt; 受注一覧詳細
+      .content.mt-3
+        %h1.purchase-title 受注一覧詳細
+        = render 'purchases/show'
+
+

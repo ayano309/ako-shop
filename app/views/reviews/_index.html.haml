@@ -1,0 +1,36 @@
+.col-md-8.offset-md-1.content
+  %table.table
+    %thead
+      %tr
+        %th 評価
+        %th
+        %th
+        %th
+        %th
+    - reviews.each do |review|
+      %tbody
+        %tr
+          %td
+            .review-rate
+              %div{:id => "star-rate-#{review.id}"}
+              :javascript
+                $('#star-rate-#{review.id}').raty({
+                  size: 36,
+                  starOff:  '#{asset_path('star-off.png')}',
+                  starOn : '#{asset_path('star-on.png')}',
+                  starHalf: '#{asset_path('star-half.png')}',
+                  half: true,
+                  readOnly: true,
+                  score: #{review.rate},
+                });
+            .rate
+              = review.rate
+          %td= review.content
+          %td
+            = review.user.name
+            %span 様
+          %td
+            %label= l review.created_at
+          %td
+  = link_to  products_path  do
+    %button.btn.btn-secondary.btn-lg.mx-auto.d-block 商品一覧に戻る

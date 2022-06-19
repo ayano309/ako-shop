@@ -14,11 +14,13 @@
         %th{:scope => "col"} 注文者名
         %th{:scope => "col"} 注文日時
         %th{:scope => "col"} 購入金額
+        %th{:scope => "col"}
     %tbody
       - @orders.each do |order|
         %tr
           %td.align-middle{:scope => "row"}= order.id
-          %td.align-middle= User.find(order.user_id).name
+          %td.align-middle= User.find(order.user_id).name + "様"
           %td.align-middle= order.updated_at.to_datetime.strftime("%Y-%m-%d %H:%M:%S")
           %td.align-middle= (order.total.fractional / 100).to_s(:delimited)
+          %td.align-middle= link_to "詳細", dashboard_order_path(order),class:"btn btn-sm btn-primary"
   = paginate @orders

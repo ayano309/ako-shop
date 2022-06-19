@@ -51,7 +51,7 @@ Rails.application.routes.draw do
         get  '/favorite', :to => 'products#favorite_users'
       end
     end
-    resources :orders, only: [:index]
+    resources :orders, only: [:index,:show]
   end
 
   # 商品関連
