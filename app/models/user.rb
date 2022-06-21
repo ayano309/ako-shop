@@ -5,8 +5,8 @@ class User < ApplicationRecord
         :recoverable, :rememberable, :validatable
 
   acts_as_liker
-  has_many :products
-  has_many :reviews
+  
+  has_many :reviews ,dependent: :destroy
 
   # モジュールの読み込み ページネーション(product.rb& category.rb,user.rb)
   extend DisplayList
