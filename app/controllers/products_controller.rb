@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :favorite]
-  PER = 15
+  
   RECOMMEND_PRODUCTS_PER_PAGE = 6
 
   def index
